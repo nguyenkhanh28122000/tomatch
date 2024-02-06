@@ -1,0 +1,12 @@
+.line {
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.line.isLine1 {
+    height: 1px;
+}
+
+.line.isShadow {
+    box-shadow: 0 0.4rem 0.7rem 0 var(--primary-shadow);
+}

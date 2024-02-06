@@ -1,0 +1,78 @@
+.icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    margin-left: -0.5rem;
+}
+
+.text {
+    font-size: 1rem;
+    color: var(--text-black-color);
+    font-weight: 300;
+    margin-top: 1rem;
+}
+
+.separation {
+    display: flex;
+    align-items: center;
+    margin: 3rem 0 3rem 0;
+    max-width: 80%;
+    p {
+        text-transform: uppercase;
+        font-weight: 400;
+        color: var(--text-black-color);
+        font-size: 1rem;
+        margin: 0 1rem;
+    }
+}
+
+.formGroup {
+    margin-bottom: 4rem;
+    width: 80%;
+    label {
+        display: block;
+        text-align: left;
+
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-black-color);
+        margin-bottom: 0.8rem;
+    }
+}
+
+.formRegister {
+    height: 85rem !important;
+    .text {
+        margin-top: 0.5rem;
+    }
+
+    .separation {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .formGroup {
+        label {
+            margin-bottom: 0.5;
+        }
+    }
+}
+
+.authItem {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 2rem;
+    p {
+        font-size: 1.2rem;
+        color: var(--text-black-color);
+    }
+
+    .link {
+        font-size: 1.3rem;
+        color: var(--red-err-color);
+        margin-left: 0.5rem;
+        &:hover {
+            color: var(--red-color);
+        }
+    }
+}

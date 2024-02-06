@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+
+import { publicRoutes, privateRoutes } from './Router/router';
+import DefaultLayout from './conponents/Layout/Layout';
+import { Fragment } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                {publicRoutes.map(({ path, element, layout }, index) => {
+                    const Page = element;
+                    const Layout = layout === null ? Fragment : DefaultLayout;
+                    return (
+                        <Route
+                            key={`${path} + ${index}`}
+                            path={path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+                {privateRoutes.map(({ path, element }, index) => {
+                    const Page = element;
+                    return (
+                        <Route
+                            key={`${path} + ${index}`}
+                            path={path}
+                            element={
+                                <DefaultLayout>
+                                    <Page />
+                                </DefaultLayout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
