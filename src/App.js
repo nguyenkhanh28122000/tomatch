@@ -23,16 +23,21 @@ function App() {
                         />
                     );
                 })}
-                {privateRoutes.map(({ path, element }, index) => {
+                {privateRoutes.map(({ path, element, layout, layoutHome }, index) => {
                     const Page = element;
+                    const LayoutHome = layoutHome === null ? Fragment : layoutHome;
+                    const Layout = layout === null ? Fragment : DefaultLayout;
+
                     return (
                         <Route
                             key={`${path} + ${index}`}
                             path={path}
                             element={
-                                <DefaultLayout>
-                                    <Page />
-                                </DefaultLayout>
+                                <Layout>
+                                    <LayoutHome>
+                                        <Page />
+                                    </LayoutHome>
+                                </Layout>
                             }
                         />
                     );

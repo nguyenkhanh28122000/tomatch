@@ -1,0 +1,90 @@
+.main {
+    display: flex;
+    padding: 1.5rem;
+    border: 2px solid var(--primary-color);
+    .info {
+        width: 30%;
+        text-align: left;
+        color: var(--text-black-color);
+        .titleInfo {
+            width: 100%;
+            font-size: 1rem;
+
+            h3 {
+                font-weight: 300;
+                text-transform: uppercase;
+            }
+            p {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-top: -1rem;
+            }
+        }
+
+        .titleTotal {
+            font-size: 1.2rem;
+
+            span {
+                font-weight: 700;
+                text-transform: capitalize;
+            }
+        }
+
+        .total {
+            font-size: 1.2rem;
+            margin-top: -0.5rem;
+            font-weight: 700;
+        }
+
+        .btn {
+            margin-top: 3rem;
+            border-radius: 2rem;
+            width: 10rem;
+            height: 3.4rem;
+        }
+    }
+
+    .chart {
+        width: 70%;
+        .chartLayout {
+            width: 100%;
+            height: 180px;
+            margin-top: 1rem;
+
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 2px solid var(--primary-color);
+
+            .chartLayoutItem {
+                position: relative;
+                align-self: flex-end;
+                width: 4rem;
+                text-align: center;
+                animation: growth ease-in 0.5s;
+
+                span {
+                    position: absolute;
+                    top: -15px;
+                    display: block;
+                    left: 50%;
+                    font-size: 1.2rem;
+                    margin-top: -0.4rem;
+                    transform: translateX(-41%);
+                }
+            }
+        }
+
+        .birdBox {
+            margin-top: 1.5rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}
+
+@media (min-width: 868px) {
+    .main {
+        max-width: 450px;
+    }
+}

@@ -1,0 +1,32 @@
+.pagination {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 0;
+    align-items: center;
+
+    .btnPage {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0;
+        font-size: 1.6rem;
+    }
+
+    .btnPage.active {
+        border-width: 0.15rem;
+        background-color: var(--active-paginatio-color);
+    }
+
+    .btnBack {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        opacity: 0.8;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .btnNext {
+        transform: rotate(180deg);
+    }
+}

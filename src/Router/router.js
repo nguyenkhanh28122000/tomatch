@@ -1,6 +1,8 @@
 import { LoginScreen, RegisterScreen } from '../pages/Auth';
-import { HomeScreen } from '../pages/Home';
-import { authPath } from './paths';
+import { HomeScreen, PersonalResultsScreen, GroupResultsScreen } from '../pages/Home';
+import { UserScreen } from '../pages/User';
+
+import { authPath, privatePath } from './paths';
 
 const publicRoutes = [
     {
@@ -17,8 +19,20 @@ const publicRoutes = [
 
 const privateRoutes = [
     {
-        path: '/',
-        element: HomeScreen,
+        path: privatePath.user,
+        element: UserScreen,
+        layout: null,
+        layoutHome: null,
+    },
+    {
+        path: privatePath.personalResults,
+        element: PersonalResultsScreen,
+        layoutHome: HomeScreen,
+    },
+    {
+        path: privatePath.groupResults,
+        element: GroupResultsScreen,
+        layoutHome: HomeScreen,
     },
 ];
 

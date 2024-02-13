@@ -1,0 +1,73 @@
+.container {
+    justify-content: flex-start !important;
+    padding-top: 4rem;
+
+    .boxSelect {
+        display: none;
+        width: 100%;
+        margin-bottom: 5rem;
+        padding: 0 3rem;
+        max-width: 500px;
+        justify-content: space-between;
+
+        .btn {
+            font-size: 1.4rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .btn.btn2 {
+            background-color: var(--btn-yellow);
+            border-color: var(--btn-border-yellow);
+            color: var(--text-black-color);
+
+            &:hover {
+                box-shadow: 0 0 0.8rem 0 var(--btn-yellow-shadow);
+            }
+        }
+    }
+
+    .boxBtn {
+        display: flex;
+        justify-content: space-between;
+
+        width: 34rem;
+        height: 4rem;
+        // padding: 1rem;
+        background-color: var(--white-color);
+        border: 0.1rem solid var(--primary-color);
+
+        margin-top: 2rem;
+
+        .line {
+            width: 0.1rem;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+
+        .btn {
+            width: 50%;
+            height: 100%;
+            background-color: var(--white-color);
+            color: var(--text-black-color);
+            font-size: 1.4rem;
+            font-weight: 500;
+            border: unset;
+            border-radius: 0;
+            overflow: hidden;
+            text-transform: none;
+            transition: unset;
+        }
+
+        .btn.active {
+            background-color: var(--btn-green-color2);
+            color: var(--white-color);
+        }
+    }
+}
+
+@media (max-width: 1110px) {
+    .container .boxSelect {
+        display: flex;
+    }
+}

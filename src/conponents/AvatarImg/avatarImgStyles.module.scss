@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--white-color);
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.body.isEagle {
+    border: 0.15rem solid var(--eagle-color);
+    box-shadow: 0 0 0.8rem 0 var(--eagle-shadow);
+}
+
+.body.isEagle + .title {
+    color: var(--eagle-color);
+}
+
+.body.isOwl {
+    border: 0.15rem solid var(--owl-color);
+    box-shadow: 0 0 0.8rem 0 var(--owl-shadow);
+}
+
+.body.isOwl + .title {
+    color: var(--owl-color);
+}
+
+.body.isPeacock {
+    border: 0.15rem solid var(--peacock-color);
+    box-shadow: 0 0 0.8rem 0 var(--peacock-shadow);
+}
+
+.body.isPeacock + .title {
+    color: var(--peacock-color);
+}
+
+.body.isDove {
+    border: 0.15rem solid var(--dove-color);
+    box-shadow: 0 0 0.8rem 0 var(--dove-shadow);
+}
+
+.body.isDove + .title {
+    color: var(--dove-color);
+}
+
+// //RESPONSIVE
+// @media (max-width: 768px) {
+//     .avatar {
+//         width: 5.5rem;
+//         height: 5.5rem;
+//     }
+// }
+
+// @media (max-width: 468px) {
+//     .avatar {
+//         width: 5rem;
+//         height: 5rem;
+//     }
+// }

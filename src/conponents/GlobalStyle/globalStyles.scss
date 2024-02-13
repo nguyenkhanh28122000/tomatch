@@ -3,9 +3,34 @@
 :root {
     --bgr-main-color: #f4fff7;
     --white-color: #ffffff;
+    --active-color: rgba(255, 255, 255, 0.1);
+    --hover-color: rgba(255, 255, 255, 0.3);
+    --header-color: #c9f4ee;
+
     --primary-color: #047665;
     --btn-green-color: #35998a;
+    --btn-green-color2: #129d88;
+    --btn-yellow: #f1e792;
+    --btn-border-yellow: #7b7706;
+    --btn-yellow-shadow: rgba(123, 119, 6, 0.4);
+
     --text-black-color: #066a5b;
+    --bgr-sidebar-color: #0a4c42;
+
+    --active-paginatio-color: #8ce2d5;
+
+    --eagle-color: #760404;
+    --eagle-shadow: rgba(118, 4, 4, 0.4);
+
+    --owl-color: #c0561a;
+    --owl-shadow: rgba(192, 86, 26, 0.4);
+
+    --peacock-color: #0e30a7;
+    --peacock-shadow: rgba(14, 48, 167, 0.4);
+
+    --dove-color: #a117ad;
+    --dove-shadow: rgba(161, 23, 173, 0.4);
+
     --red-color: #af0606;
     --red-err-color: #920909;
     --primary-shadow: rgba(4, 118, 101, 0.3);
