@@ -6,13 +6,16 @@
     --active-color: rgba(255, 255, 255, 0.1);
     --hover-color: rgba(255, 255, 255, 0.3);
     --header-color: #c9f4ee;
-
     --primary-color: #047665;
+
     --btn-green-color: #35998a;
     --btn-green-color2: #129d88;
     --btn-yellow: #f1e792;
     --btn-border-yellow: #7b7706;
     --btn-yellow-shadow: rgba(123, 119, 6, 0.4);
+    --btn-cancel: #e87474;
+    --btn-cancel-border: #af0606;
+    --btn-cancel-shadow: rgba(175, 6, 6, 0.4);
 
     --text-black-color: #066a5b;
     --bgr-sidebar-color: #0a4c42;
@@ -35,6 +38,8 @@
     --red-err-color: #920909;
     --primary-shadow: rgba(4, 118, 101, 0.3);
     --red-shadow: rgba(113, 7, 7, 0.3);
+
+    --bgr-modal-shadow: rgba(29, 28, 28, 0.4);
 
     --border-style: 0.1rem solid var(--primary-color);
     --transition-delay: all 0.2s ease-in;

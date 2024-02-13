@@ -11,12 +11,10 @@ function PersonalResults() {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(6);
 
-    console.log(11, currentPage);
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     let datas = coinsData.slice(firstPostIndex, lastPostIndex);
 
-    console.log(datas);
     return (
         <>
             <div className={cx('container')}>

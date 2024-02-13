@@ -1,18 +1,22 @@
 import { useLocation } from 'react-router';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../styles/homeStyles.module.scss';
+
 import { privatePath } from '../../../Router/paths';
-import { Header, Line, BgrMain, ButtonCpn } from '../../../conponents';
+import { Header, Line, BgrMain, ButtonCpn, ModalComp } from '../../../conponents';
 
 const cx = classNames.bind(styles);
 
 function Home({ children }) {
     const location = useLocation();
 
+    const [openModal, setOpenModal] = useState(false);
+
     return (
         <BgrMain className={cx('container')} isHomeScreen isVerticalAlignment>
             <div className={cx('boxSelect')}>
-                <ButtonCpn button2 className={cx('btn')}>
+                <ButtonCpn button2 className={cx('btn')} onClick={() => setOpenModal(true)}>
                     làm bài test
                 </ButtonCpn>
                 <ButtonCpn button2 className={cx('btn', 'btn2')}>
@@ -44,6 +48,9 @@ function Home({ children }) {
                 </ButtonCpn>
             </div>
             {children}
+            <ModalComp isOpen={openModal} setOpenModal={setOpenModal}>
+                11111
+            </ModalComp>
         </BgrMain>
     );
 }

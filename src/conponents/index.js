@@ -5,5 +5,5 @@ export { default as Header } from './Header/Header';
 export { default as Line } from './Line/Line';
 export { default as AvatarImg } from './AvatarImg/AvatarImg';
 export { default as Pagination } from './Pagination/Pagination';
-
+export { default as ModalComp } from './Modal/Modal';
 export { default as BoxResult } from './BoxResult/BoxResult';
