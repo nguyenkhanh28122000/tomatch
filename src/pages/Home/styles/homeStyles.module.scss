@@ -31,7 +31,8 @@
         display: flex;
         justify-content: space-between;
 
-        width: 34rem;
+        width: 95%;
+        max-width: 40rem;
         height: 4rem;
         background-color: var(--white-color);
         border: 0.1rem solid var(--primary-color);
@@ -58,6 +59,57 @@
             transition: unset;
         }
 
+        .btn.btnPersonal {
+            position: relative;
+            overflow: unset;
+
+            &:hover {
+                letter-spacing: 0;
+            }
+
+            .iconShow {
+                position: absolute;
+                // top: 100%;
+                right: 0.5rem;
+
+                margin-left: 0.5rem;
+                font-size: 1.6rem;
+            }
+        }
+
+        .bodyBtnPersonal {
+            display: none;
+            position: absolute;
+            top: 4rem;
+            background-color: var(--bgr-main-color);
+            width: 100%;
+
+            border: 2px solid var(--primary-color);
+            z-index: 1000;
+            .selectItem {
+                color: var(--text-black-color);
+                border-radius: unset;
+                height: 4rem;
+
+                &:nth-child(1) {
+                    border-bottom: 1.5px solid var(--primary-color);
+                }
+
+                &:hover {
+                    letter-spacing: normal;
+                    background-color: var(--primary-shadow);
+                }
+            }
+
+            .selectItem.active {
+                color: var(--white-color);
+                background-color: var(--btn-green-color3);
+            }
+        }
+        .bodyBtnPersonal.isShow {
+            display: block;
+        }
+
         .btn.active {
             background-color: var(--btn-green-color2);
             color: var(--white-color);
@@ -65,6 +117,24 @@
     }
 }
 
+.contentModal {
+    .title {
+        font-size: 1.6rem;
+        color: var(--primary-color);
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .boxRadio {
+        width: 100%;
+        margin: 2rem auto 3.5rem;
+        margin-left: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+//RESPONSIVE
 @media (max-width: 1110px) {
     .container .boxSelect {
         display: flex;

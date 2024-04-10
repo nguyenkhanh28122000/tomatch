@@ -6,4 +6,15 @@
         .content {
         }
     }
+
+    .titleLogoutModal {
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--text-black-color);
+        margin-bottom: 3rem;
+        span {
+            color: var(--text-red-color);
+        }
+    }
 }

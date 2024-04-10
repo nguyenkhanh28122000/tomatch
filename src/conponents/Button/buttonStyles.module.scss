@@ -51,10 +51,43 @@
 }
 
 .wrapper.button3.disabled {
-    opacity: 0.4;
+    opacity: 0.7;
 
     &:hover {
         cursor: unset;
+        box-shadow: unset;
+    }
+}
+.wrapper.button2.disabled,
+.wrapper.button1.disabled {
+    opacity: 0.7;
+    border: var(--border-style);
+
+    &:hover {
+        cursor: unset;
+        box-shadow: unset;
+    }
+}
+
+.backBtn {
+    font-size: 2rem;
+    color: var(--text-black-color);
+
+    background-color: unset;
+    border: 0;
+    text-transform: capitalize;
+    opacity: 0.8;
+
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+
+    .iconBack {
+        font-size: 2.5rem;
+    }
+    &:hover {
+        letter-spacing: 0rem;
+        opacity: 1;
     }
 }
 
@@ -79,5 +112,13 @@
         height: 3.5rem;
 
         font-size: 1rem;
+    }
+
+    .backBtn {
+        font-size: 1.5rem;
+
+        .iconBack {
+            font-size: 2rem;
+        }
     }
 }

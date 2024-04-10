@@ -7,3 +7,15 @@ export { default as AvatarImg } from './AvatarImg/AvatarImg';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as ModalComp } from './Modal/Modal';
 export { default as BoxResult } from './BoxResult/BoxResult';
+export { default as BoxResultBeck } from './BoxResultBeck/BoxResultBeck';
+export { default as BoxResultGroup } from './BoxResult/BoxResultGroup';
+export { default as InputRadio } from './InputRadio/InputRadio';
+export { default as InputCheckbox } from './InputCheckbox/InputCheckbox';
+export { default as BackBtn } from './Button/BackBtn';
+export { default as BoxInput } from './BoxInput/BoxInput';
+
+export { default as RenderChart } from './BoxResult/component/RenderChart';
+export { default as RenderCompatibility } from './BoxResult/component/RenderCompatibility';
+export { default as BoxSelectBird } from './BoxResult/component/BoxSelectBird';
+export { default as PersonalInfos } from './PersonalInfos/PersonalInfos';
+export { default as NotDataIcon } from './NotDataIcon/NotDataIcon';

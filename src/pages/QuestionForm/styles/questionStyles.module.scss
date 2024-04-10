@@ -1,0 +1,125 @@
+.questionContainer {
+    width: 100%;
+    text-align: left;
+
+    margin-bottom: 2rem;
+    p {
+        font-size: 1.6rem;
+        font-weight: 300;
+        line-height: 2.2rem;
+        color: var(--text-black-color);
+
+        margin-bottom: 1rem;
+    }
+
+    .boxSelect {
+        width: 50%;
+        padding-left: 5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .boxSelectResult label {
+        cursor: default !important;
+    }
+}
+
+.questionPsyContainer {
+    margin-bottom: 4rem;
+    .boxTitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 130%;
+            background-color: var(--primary-color);
+
+            right: 25%;
+        }
+
+        .question {
+            display: flex;
+            flex: 1;
+
+            // border-right: 2px solid var(--primary-color);
+            .test {
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
+
+            .text {
+                position: relative;
+                flex: 1;
+                text-align: left;
+                margin-left: 1rem;
+                font-size: 1.4rem;
+            }
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+            span {
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .boxTitle.boxTitleResult::after {
+        right: 20%;
+    }
+
+    .boxSelect {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin: 2rem 0;
+
+        p {
+            text-align: left;
+            margin-left: 1rem;
+
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+        }
+    }
+
+    .boxSelectResult label {
+        cursor: default !important;
+    }
+}
+
+// //RESPONSIVE
+// @media (max-width: 768px) {
+//     .avatar {
+//         width: 5.5rem;
+//         height: 5.5rem;
+//     }
+// }
+
+@media (max-width: 550px) {
+    .questionPsyContainer .boxTitle.boxTitle.boxTitleResult::after {
+        display: none;
+    }
+}
+
+@media (max-width: 468px) {
+    .questionPsyContainer .boxTitle {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .question {
+            margin-bottom: 1rem;
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+}

@@ -10,10 +10,13 @@ import { itemNavbarPath1, itemNavbarPath2 } from '../../../acset/dataRender';
 
 const cx = classNames.bind(styles);
 
-function Navbar() {
+function Navbar({ setOpenLogout }) {
     const [idActive, setIDActive] = useState(1);
 
     const handleClick = (id) => {
+        if (id === 5) {
+            setOpenLogout(true);
+        }
         if (id) {
             setIDActive(id);
         } else {

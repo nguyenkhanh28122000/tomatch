@@ -1,0 +1,51 @@
+.boxSelectCharacter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    .birdBody {
+        display: none;
+        width: 15rem;
+        .bird {
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .birdBody.isMemberResult {
+        width: 8rem;
+        .bird {
+            margin: 1.5rem 0;
+        }
+    }
+
+    .birdBody.active {
+        display: block;
+    }
+
+    .btn {
+        width: 5rem;
+        height: 5rem;
+        font-size: 2.8rem;
+        color: var(--text-black-color);
+    }
+
+    .btn.delBtn {
+        opacity: 0.5;
+    }
+
+    .btnNext {
+        transform: rotate(180deg);
+    }
+
+    .header {
+        position: absolute;
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+        width: 30rem;
+
+        bottom: -4rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

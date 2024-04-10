@@ -1,0 +1,52 @@
+.radioItem {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    color: var(--text-black-color);
+    position: relative;
+    padding-left: 2.5rem;
+    cursor: pointer;
+    input {
+        display: none;
+
+        &:checked ~ span::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    span {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        border: 1.5px solid var(--primary-color);
+
+        display: block;
+        position: absolute;
+        left: 0;
+
+        &::after {
+            content: '';
+            width: 1.2rem;
+            height: 1.2rem;
+            background-color: var(--primary-color);
+
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+
+            transition: 0.3s ease-in-out 0s;
+        }
+    }
+}
+
+.radioItem.isLabelLeft {
+    text-align: left;
+}

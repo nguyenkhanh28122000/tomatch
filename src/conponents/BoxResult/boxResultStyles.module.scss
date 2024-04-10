@@ -3,11 +3,11 @@
     padding: 1.5rem;
     border: 2px solid var(--primary-color);
     .info {
-        width: 30%;
+        flex: 1 1;
         text-align: left;
         color: var(--text-black-color);
         .titleInfo {
-            width: 100%;
+            width: 150%;
             font-size: 1rem;
 
             h3 {
@@ -17,14 +17,20 @@
             p {
                 font-size: 1.2rem;
                 font-weight: 700;
-                margin-top: -1rem;
+                margin-top: -0.5rem;
             }
+        }
+
+        p {
+            line-height: 3rem;
         }
 
         .titleTotal {
             font-size: 1.2rem;
-
+            display: flex;
+            flex-direction: column;
             span {
+                line-height: 0.8rem;
                 font-weight: 700;
                 text-transform: capitalize;
             }
@@ -32,7 +38,7 @@
 
         .total {
             font-size: 1.2rem;
-            margin-top: -0.5rem;
+            margin-top: 0.5rem;
             font-weight: 700;
         }
 
@@ -43,48 +49,237 @@
             height: 3.4rem;
         }
     }
+}
 
-    .chart {
-        width: 70%;
-        .chartLayout {
-            width: 100%;
-            height: 180px;
-            margin-top: 1rem;
+.chart {
+    flex: 2 1;
+    padding-left: 0.5rem;
+    .chartLayout {
+        width: 100%;
+        height: 180px;
+        margin-top: 1rem;
 
-            display: flex;
-            justify-content: space-around;
-            border-bottom: 2px solid var(--primary-color);
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 2px solid var(--primary-color);
 
-            .chartLayoutItem {
-                position: relative;
-                align-self: flex-end;
-                width: 4rem;
-                text-align: center;
-                animation: growth ease-in 0.5s;
+        .chartLayoutItem {
+            position: relative;
+            align-self: flex-end;
+            width: 4rem;
+            text-align: center;
+            animation: growth ease-in 0.5s;
 
-                span {
-                    position: absolute;
-                    top: -15px;
-                    display: block;
-                    left: 50%;
-                    font-size: 1.2rem;
-                    margin-top: -0.4rem;
-                    transform: translateX(-41%);
-                }
+            span {
+                position: absolute;
+                top: -15px;
+                display: block;
+                left: 50%;
+                font-size: 1.2rem;
+                margin-top: -0.4rem;
+                transform: translateX(-41%);
+            }
+        }
+    }
+
+    .birdBox {
+        margin-top: 1.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+//group detail
+.compatibilityContainer {
+    width: 100%;
+    border: 0.1rem solid var(--primary-color);
+    margin-right: 0.5rem;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    // h4 {
+    //     font-size: 0.8rem;
+    // }
+
+    .boxSelectCharacter {
+        display: flex;
+        width: 80%;
+        justify-content: space-between;
+        text-align: center;
+        margin: 0 auto;
+
+        .birdAvt {
+            margin: auto;
+
+            .imgBird {
+                width: 4rem !important;
+                height: 4rem !important;
+            }
+
+            span {
+                display: block;
+                font-size: 1.2rem;
             }
         }
 
-        .birdBox {
-            margin-top: 1.5rem;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
+        .btnBack {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.8rem;
+        }
+
+        .btnBack.delBtn {
+            display: none;
+        }
+
+        .btnNext {
+            transform: rotate(180deg);
+        }
+    }
+
+    .birdAvt {
+        .boxInfo {
+            h4 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                text-transform: uppercase;
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+            }
         }
     }
 }
 
-@media (min-width: 868px) {
+.compatibilityContainer.isFormGroup {
+    border: none;
+    background-color: unset;
+    height: 100%;
+    .slider {
+        height: 100% !important;
+        .bodySlider {
+            background-color: unset !important;
+        }
+    }
+}
+
+.compatibilityContainer {
+    h4 {
+        font-size: 1rem;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .boxSelectCharacter {
+        .birdAvt {
+            display: none;
+        }
+        .birdAvt.active {
+            display: block;
+        }
+    }
+}
+
+//======== STYLES GROUP ===========
+.mainResultGroup {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 700px;
+    border: 2px solid var(--primary-color);
+    margin-top: 4rem;
+    padding-bottom: 4rem;
+    .info {
+        flex: 0.5;
+
+        .title {
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    .contentMain {
+        flex: 2.5;
+        .chart {
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+    }
+
+    .boxDate {
+        position: absolute;
+        bottom: 0.5rem;
+        width: 100%;
+        padding: 0 1.5rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        left: 0;
+        p {
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+            font-weight: 700;
+            &:nth-child(2) {
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.headerContainer {
+    margin-bottom: 2rem;
+
+    .boxHeader {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 4rem;
+        .header {
+            flex: 5;
+            font-size: 1.7rem;
+            margin: unset;
+        }
+
+        .btn {
+            flex: 1;
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+            text-decoration: underline;
+            display: block;
+
+            &:hover {
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .mainResultGroup {
+        margin-top: 7rem;
+    }
+}
+
+@media (max-width: 400px) {
     .main {
-        max-width: 450px;
+        .chart {
+            .chartLayout {
+                .chartLayoutItem {
+                    width: 3rem;
+                }
+            }
+        }
     }
 }

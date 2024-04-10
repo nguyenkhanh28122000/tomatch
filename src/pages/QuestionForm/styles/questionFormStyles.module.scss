@@ -1,0 +1,102 @@
+.formTestContainer {
+    width: 90%;
+    max-width: 500px;
+
+    margin-top: 7rem;
+
+    .btnSubmit {
+        position: absolute;
+        font-size: 1.4rem;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        .boxHover {
+            font-size: 1.2rem;
+            color: var(--red-color);
+
+            position: absolute;
+            top: 4.5rem;
+            width: 180%;
+            letter-spacing: 0 !important;
+            text-transform: none;
+            display: none;
+            transition: var(--transition-delay);
+        }
+
+        &:hover .boxHover {
+            display: block;
+            transition: var(--transition-delay);
+        }
+
+        .total {
+            font-size: 1.3rem;
+            color: var(--text-black-color);
+
+            position: absolute;
+            top: -2rem;
+            width: 180%;
+            letter-spacing: 0 !important;
+            text-transform: none;
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.boxModal {
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    .imgSuc {
+        width: 10rem;
+        height: 10rem;
+        margin: 0 auto;
+    }
+    h3 {
+        font-size: 1.6rem;
+        color: var(--text-black-color);
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    p {
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+
+        // margin: 2rem 0;
+        margin-bottom: 1rem;
+
+        span {
+            text-transform: uppercase;
+        }
+    }
+
+    .text2 {
+        font-weight: 700;
+        margin-bottom: -2rem;
+    }
+    .text3 {
+        margin: 2rem 0;
+        text-transform: none;
+        .link:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+}
+
+.boxModal.boxModalErr {
+    border-color: var(--red-err-color);
+    .iconErr {
+        font-size: 16rem;
+        color: var(--red-color);
+        margin: auto;
+    }
+}

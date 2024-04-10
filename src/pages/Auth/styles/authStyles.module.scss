@@ -55,6 +55,33 @@
             margin-bottom: 0.5;
         }
     }
+
+    .boxModal {
+        .imgSuc {
+            width: 10rem;
+            height: 10rem;
+            margin: 0 auto;
+        }
+        h3 {
+            font-size: 2rem;
+            color: var(--text-black-color);
+            text-transform: uppercase;
+            font-weight: 700;
+
+            margin-top: 2rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: var(--text-black-color);
+
+            margin: 2rem 0;
+
+            span {
+                text-transform: uppercase;
+            }
+        }
+    }
 }
 
 .authItem {

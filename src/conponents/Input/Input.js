@@ -15,9 +15,12 @@ function Input({
     onChange,
     onFocus,
     name,
+    value,
     typeInput = 'text',
     isPassword = false,
     errMes = null,
+
+    ...props
 }) {
     const [showPass, setShowPass] = useState(false);
     const [type, setType] = useState(typeInput);
@@ -42,7 +45,9 @@ function Input({
                     onChange={onChange}
                     onFocus={onFocus}
                     name={name}
+                    value={value}
                     type={type}
+                    {...props}
                 />
                 {isPassword ? (
                     <>

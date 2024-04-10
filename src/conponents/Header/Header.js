@@ -3,7 +3,7 @@ import styles from './headerStyles.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Header({ title, header2 = false, header3 = false }) {
+function Header({ className, title, header2 = false, header3 = false }) {
     let Header = 'h1';
     if (header2) {
         Header = 'h3';
@@ -11,7 +11,7 @@ function Header({ title, header2 = false, header3 = false }) {
         Header = 'h4';
     }
 
-    return <Header className={cx('header')}>{title}</Header>;
+    return <Header className={cx('header', { [className]: className })}>{title}</Header>;
 }
 
 export default Header;

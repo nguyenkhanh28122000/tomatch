@@ -1,0 +1,120 @@
+.container {
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 7rem;
+
+    .inputBody {
+        width: 70%;
+        background-color: unset;
+        border: unset;
+
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+        font-weight: 300;
+    }
+
+    .textarea {
+        width: 100%;
+        height: calc(100% - 4rem);
+        overflow: auto;
+        resize: none;
+
+        border: none;
+        margin-top: 1rem;
+
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: var(--text-black-color);
+    }
+    .btn {
+        margin: 0 auto;
+        border-radius: 2rem;
+        margin-bottom: 4rem;
+        font-size: 1.4rem;
+    }
+
+    .btn.btnTest {
+        border-color: var(--red-color);
+        color: var(--red-color);
+
+        &:hover {
+            box-shadow: 0 0 0.5rem 0.2rem var(--red-shadow);
+        }
+    }
+
+    .listMail {
+        width: 100%;
+        height: calc(100% - 7rem);
+        overflow: auto;
+
+        li {
+            display: flex;
+            font-size: 1.2rem;
+            color: var(--text-black-color);
+            font-weight: 300;
+            p {
+                width: 25px;
+            }
+
+            input {
+                font-size: 1.2rem;
+                font-weight: 300;
+                color: var(--text-black-color);
+                border: none;
+                width: 100%;
+            }
+
+            input.errEmail {
+                color: var(--red-color);
+            }
+        }
+    }
+}
+
+// .mainContainer {
+//     position: relative;
+// }
+
+.boxModal {
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    .imgSuc {
+        width: 10rem;
+        height: 10rem;
+        margin: 0 auto;
+    }
+    h3 {
+        font-size: 1.6rem;
+        color: var(--text-black-color);
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 3rem;
+        margin-top: 2rem;
+    }
+
+    p {
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+
+        margin: 2rem 0;
+
+        span {
+            text-transform: uppercase;
+        }
+    }
+}
+
+.boxModal.boxModalErr {
+    border-color: var(--red-err-color);
+    .iconErr {
+        font-size: 16rem;
+        color: var(--red-color);
+        margin: auto;
+    }
+}

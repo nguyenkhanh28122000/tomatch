@@ -1,40 +1,63 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from '../styles/resultScreenStyles.module.scss';
 
 import { Pagination, ButtonCpn } from '../../../conponents';
+import { privatePath } from '../../../Router/paths';
 import { fakeResultGroups } from '../../../acset/dataRender';
+
+import { useSelector } from 'react-redux';
+import { useGetGroupInfomationQuery, usePrefetch } from '../../../store/api';
+import { selectUserId } from '../../../store/apiSlice';
+
 const cx = classNames.bind(styles);
 
 function GroupResults() {
-    const [coinsData, setCoinsData] = useState(fakeResultGroups);
+    const idUser = useSelector(selectUserId);
+
+    const [totalResult, setTotalResult] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(6);
+    const prefetchGetGroupInfomation = usePrefetch('getGroupInfomation', {
+        ifOlderThan: 1,
+    });
+    const { data } = useGetGroupInfomationQuery({ id: idUser, pageNum: currentPage, pageSize: postsPerPage });
 
-    const lastPostIndex = currentPage * postsPerPage;
-    const firstPostIndex = lastPostIndex - postsPerPage;
-    let datas = coinsData.slice(firstPostIndex, lastPostIndex);
+    useEffect(() => {
+        if (data?.status === 1) {
+            setTotalResult(data?.data.Total);
+        }
+    }, [data?.data.Total]);
+
+    useEffect(() => {
+        prefetchGetGroupInfomation({ id: idUser, pageNum: currentPage, pageSize: postsPerPage });
+    }, []);
 
     return (
         <>
             <div className={cx('container', 'groupContainer')}>
-                {datas.map((item, index) => {
+                {data?.data?.Result.map((item, index) => {
                     return (
-                        <ButtonCpn key={index} button1 className={cx('itemBody')}>
-                            <h3>{item.nameGroup}</h3>
+                        <ButtonCpn
+                            key={index}
+                            to={`/group-results/${item.GroupInformationID}`}
+                            button1
+                            className={cx('itemBody')}
+                        >
+                            <h3>{item.GroupName}</h3>
                             <div className={cx('boxInfo')}>
                                 <p className={cx('completePeople')}>
-                                    số người làm: <span>{`${item.totalComplete}/${item.total}`}</span>
+                                    số người làm: <span>{`${item.PersonalResultCount}/${item.EmailCount}`}</span>
                                 </p>
-                                <p className={cx('date')}>{item.dateCreate}</p>
+                                <p className={cx('date')}>{item.CreatedDate}</p>
                             </div>
                         </ButtonCpn>
                     );
                 })}
             </div>
             <Pagination
-                totalPosts={coinsData.length}
+                totalPosts={totalResult}
                 postsPerPage={postsPerPage}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}

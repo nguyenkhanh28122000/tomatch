@@ -7,6 +7,11 @@ const bird = {
     dove: require('./bocau.png'),
 };
 
+const iconImg = {
+    success: require('./success-icon.png'),
+    loading: require('./loading.gif'),
+};
+
 export default avatarDefault;
 
-export { bird };
+export { bird, iconImg };

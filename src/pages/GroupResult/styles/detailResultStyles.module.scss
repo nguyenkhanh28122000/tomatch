@@ -1,0 +1,191 @@
+.container {
+    justify-content: flex-start !important;
+    padding-top: 7rem;
+
+    .bodyBoxResult {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 2rem;
+        margin-top: 2rem;
+
+        display: grid;
+        grid-gap: 3rem;
+        gap: 3rem;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: auto;
+        grid-template-columns: repeat(auto-fit, minmax(38rem, 1fr));
+    }
+}
+
+main.table {
+    width: 90%;
+    min-width: 900px;
+}
+
+.resultPerContainer {
+    margin-top: 3rem;
+    margin-bottom: -1rem;
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .boxResultMain {
+        display: flex;
+        align-items: center;
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-black-color);
+            line-height: 2.3rem;
+            text-transform: uppercase;
+            width: 12rem;
+            text-align: left;
+        }
+
+        .resultBody {
+            border-left: 2px solid var(--primary-color);
+
+            .title {
+                color: var(--text-black-color);
+                font-size: 1.6rem;
+                margin-right: 1.5rem;
+            }
+
+            .boxDisc {
+                display: flex;
+                align-items: center;
+                margin: 0 1rem;
+                padding: 1rem 0;
+
+                .birdResult {
+                    margin-left: 1rem;
+                    .bird {
+                        width: 5rem;
+                        height: 5rem;
+                    }
+                }
+            }
+
+            .boxBeck {
+                display: flex;
+                align-items: center;
+                margin: 0 1rem;
+
+                .body {
+                    border: none;
+                    span {
+                        display: block;
+                    }
+                    p,
+                    span {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mainTable {
+    border-radius: 0.5rem;
+    .contentTable {
+        border-collapse: collapse;
+
+        margin: 25px 0;
+        font-size: 0.9em;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        box-shadow: 0 0 20px var(--bgr-modal-shadow);
+
+        thead tr {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold;
+
+            th:nth-child(1) {
+                width: 3%;
+                border-right: 1px solid var(--white-color);
+            }
+            th:nth-child(2) {
+                width: 20%;
+                border-right: 1px solid var(--white-color);
+            }
+            th:nth-child(3) {
+                width: 33%;
+                border-right: 1px solid var(--white-color);
+            }
+            th:nth-child(4) {
+                width: 30%;
+                border-right: 1px solid var(--white-color);
+            }
+            th:nth-child(5) {
+                width: 15%;
+            }
+        }
+
+        th,
+        td {
+            padding: 1.2rem 1.5rem;
+            border: 1px solid var(--primary-color);
+        }
+
+        tbody tr {
+            border: 1px solid var(--primary-color);
+            color: var(--text-black-color);
+            &:hover {
+                background-color: var(--hover-item-table);
+                cursor: pointer;
+            }
+        }
+
+        tbody tr:last-of-type {
+            border-bottom: 2px solid var(--primary-color);
+        }
+    }
+}
+
+//RESPONSIVE
+
+@media (max-width: 900px) {
+    .boxHeader {
+        position: fixed;
+        height: 12rem;
+        background-color: var(--bgr-main-color);
+        top: 7rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 2rem;
+        z-index: 1000;
+    }
+    .container {
+        margin-left: 2rem;
+        align-items: start !important;
+
+        main.table {
+            margin-top: 4rem;
+        }
+    }
+
+    .container.containerMemberResult {
+        margin-left: unset;
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .container.containerMemberResult {
+        margin-left: 2rem;
+        align-items: start !important;
+    }
+}

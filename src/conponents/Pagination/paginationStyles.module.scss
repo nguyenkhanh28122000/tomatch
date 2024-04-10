@@ -3,7 +3,6 @@
     gap: 1rem;
     padding: 2rem 0;
     align-items: center;
-
     .btnPage {
         width: 3rem;
         height: 3rem;
@@ -28,5 +27,49 @@
 
     .btnNext {
         transform: rotate(180deg);
+    }
+
+    .containerPaginationInput {
+        display: flex;
+        width: 8rem;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.5rem;
+        color: var(--text-black-color);
+        .input {
+            border: 1px solid var(--primary-color);
+            border-radius: 2px;
+            text-align: center;
+            padding: 0.3rem 0;
+            width: 3rem;
+
+            font-size: 1.5rem;
+            color: var(--text-black-color);
+        }
+
+        .input[type='number']::-webkit-inner-spin-button,
+        .input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    }
+}
+
+.pagination.isFixedBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 7rem;
+
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 400px) {
+    .pagination.isFixedBottom {
+        position: relative;
     }
 }

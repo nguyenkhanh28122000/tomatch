@@ -12,6 +12,7 @@
 }
 
 .body {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,6 +21,21 @@
     border-radius: 50%;
     overflow: hidden;
     background-color: var(--white-color);
+
+    .showPercent {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bgr-modal-shadow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .text {
+            font-size: 1.4rem;
+            color: var(--white-color);
+            margin-right: unset !important;
+        }
+    }
 
     img {
         display: block;
@@ -64,6 +80,12 @@
     color: var(--dove-color);
 }
 
+//modal
+.boxModal {
+    width: 95% !important;
+    max-width: 900px !important;
+    padding: 3rem 0 !important;
+}
 // //RESPONSIVE
 // @media (max-width: 768px) {
 //     .avatar {

@@ -1,0 +1,43 @@
+// ================== ==================
+
+.detailResultMain {
+    justify-content: start !important;
+    align-items: center !important;
+}
+
+.resultBird {
+    width: 13rem;
+    height: 13rem;
+
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.titleResutl {
+    font-size: 1.8rem !important;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+.DetailResultContainer {
+    width: 90%;
+    max-width: 500px;
+
+    margin-top: 4rem;
+}
+
+.header {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width: 468px) {
+    .header {
+        .title {
+            width: 40rem;
+            line-height: 3rem;
+            // width: 100%;
+        }
+    }
+}

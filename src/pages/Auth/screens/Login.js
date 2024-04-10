@@ -1,25 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from '../styles/authStyles.module.scss';
 
 import { BgrMain } from '../../../conponents';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
 
 import { testEmail, testPassword } from '../../../hooks/hocks';
 import { authPath } from '../../../Router/paths';
 
+import { useUserLoginMutation } from '../../../store/api';
+import { useSelector } from 'react-redux';
+import { selectUserProfile } from '../../../store/apiSlice';
+
+import { privatePath } from '../../../Router/paths';
+
 const cx = classNames.bind(styles);
 
 function Login() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [formData, setFormData] = useState({
-        email: '',
+        userName: location.state?.email ? location.state?.email : '',
         password: '',
     });
 
     const [errors, setErrors] = useState({});
+
+    const [userLogin] = useUserLoginMutation();
+    const auth = useSelector(selectUserProfile);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,13 +45,9 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const validationErrors = {};
-        // if (!formData.username.trim()) {
-        //     validationErrors.username = 'username is required';
-        // }
-
-        if (!formData.email.trim()) {
+        if (!formData.userName.trim()) {
             validationErrors.email = 'Vui lòng nhập Email';
-        } else if (testEmail(formData.email)) {
+        } else if (testEmail(formData.userName)) {
             validationErrors.email = testEmail(formData.email);
         }
 
@@ -49,22 +57,30 @@ function Login() {
             validationErrors.password = testPassword(formData.password);
         }
 
-        // if (formData.confirmPassword !== formData.password) {
-        //     validationErrors.confirmPassword = 'password not matched';
-        // }
-
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            console.log(formData);
+            userLogin(formData).then((data) => {
+                console.log(99, data);
+                if (data?.data.status !== 1) {
+                    alert(data?.data.message);
+                }
+            });
         }
     };
+
+    useEffect(() => {
+        // Navigate to home page if authenticated
+        if (auth?.UserID) {
+            navigate(privatePath.personalResults);
+        }
+    }, [auth]);
 
     return (
         <BgrMain isVerticalAlignment onSubmit={handleSubmit}>
             <Header title={'đăng nhập'} />
             <Line width={'25rem'} styles={{ marginBottom: '4rem' }} />
-            <ButtonCpn button1>
+            <ButtonCpn button1 to={'http://127.0.0.1:8000/auth/google/login'}>
                 <FcGoogle className={cx('icon')} />
                 đăng nhập với google
             </ButtonCpn>
@@ -77,10 +93,11 @@ function Login() {
             <div className={cx('formGroup')}>
                 <label for="email">Email</label>
                 <InputCpn
-                    name="email"
+                    name="userName"
                     input1
                     placeholder={'Vui lòng nhập Email của bạn!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.userName}
                     errMes={errors.email}
                 />
             </div>
@@ -93,6 +110,7 @@ function Login() {
                     input1
                     placeholder={'Vui lòng nhập mật khẩu!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.password}
                     errMes={errors.password}
                 />
             </div>

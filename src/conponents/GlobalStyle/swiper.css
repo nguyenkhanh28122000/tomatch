@@ -1,0 +1,31 @@
+.swiper {
+    width: 15rem;
+    height: 24rem;
+    background-color: transparent;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: transparent;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #047665;
+    width: 1.5rem;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 2rem;
+}

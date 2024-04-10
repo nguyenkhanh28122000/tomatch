@@ -1,0 +1,70 @@
+.infoItemContainer {
+    max-width: 500px;
+    width: 95%;
+    height: 5rem;
+
+    border-radius: 5rem;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0.4rem 0.4rem 0 var(--primary-shadow);
+
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+    overflow: hidden;
+    margin-top: 3rem;
+
+    .boxTitle {
+        text-align: left;
+        width: 15rem;
+
+        background-color: var(--green-bgr);
+        height: 100%;
+        padding-left: 2rem;
+        border-right: 1px solid var(--primary-color);
+
+        display: flex;
+        align-items: center;
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white-color);
+        }
+    }
+
+    input {
+        width: 75%;
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+        background-color: unset;
+        border: none;
+
+        padding-left: 1.5rem;
+        &:disabled {
+            opacity: 1;
+        }
+    }
+
+    p {
+        text-align: left;
+        width: 75%;
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+
+        padding-left: 1.5rem;
+    }
+
+    .icon {
+        font-size: 2.4rem;
+        color: var(--text-black-color);
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+    }
+
+    .icon.isEmail {
+        visibility: hidden;
+    }
+}

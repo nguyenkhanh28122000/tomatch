@@ -1,0 +1,38 @@
+.itemContainer {
+    .id {
+        font-size: 1.4rem;
+    }
+    .info {
+        text-align: left;
+        padding-left: 2rem;
+        font-size: 1.4rem;
+        color: var(--text-black-color);
+        line-height: 2rem;
+
+        p {
+            width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.2rem;
+            height: 4rem;
+            &:hover {
+                overflow: visible;
+                word-wrap: break-word;
+            }
+        }
+    }
+    .boxDisc {
+        padding: 1rem;
+    }
+
+    .boxBeck {
+        .body {
+            width: 100%;
+            height: 20rem;
+        }
+    }
+
+    .boxCompati {
+        position: relative;
+    }
+}

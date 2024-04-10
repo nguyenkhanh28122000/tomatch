@@ -3,7 +3,7 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../styles/authStyles.module.scss';
 
-import { BgrMain } from '../../../conponents';
+import { BgrMain, ModalComp } from '../../../conponents';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
@@ -11,9 +11,14 @@ import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
 import { testEmail, testPassword } from '../../../hooks/hocks';
 import { authPath } from '../../../Router/paths';
 
+import { useNavigate } from 'react-router-dom';
+import { useUserRegisterMutation } from '../../../store/api';
+import { iconImg } from '../../../acset/images';
+
 const cx = classNames.bind(styles);
 
 function Register() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         username: '',
@@ -22,6 +27,10 @@ function Register() {
     });
 
     const [errors, setErrors] = useState({});
+    const [emailLogin, setEmailLogin] = useState('');
+    const [openModal, setOpenModal] = useState(false);
+
+    const [userRegister] = useUserRegisterMutation();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,8 +67,32 @@ function Register() {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            console.log(formData);
+            userRegister({
+                userName: formData.email,
+                password: formData.password,
+                fullName: formData.username,
+            }).then((data) => {
+                // console.log(data.data.status);
+                if (data.data.status === 1) {
+                    setOpenModal(true);
+                    setEmailLogin(data?.data?.data.UserName);
+                } else {
+                    setTimeout(() => {
+                        setFormData({
+                            email: '',
+                            username: '',
+                            password: '',
+                            confirmPassword: '',
+                        });
+                        alert(`${data.data.message}. Vui lòng thay đổi email đăng ký`);
+                    }, [1000]);
+                }
+            });
         }
+    };
+
+    const handleOk = () => {
+        navigate(authPath.login, { state: { email: emailLogin } });
     };
 
     return (
@@ -83,6 +116,7 @@ function Register() {
                     input1
                     placeholder={'Vui lòng nhập Email của bạn!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.email}
                     errMes={errors.email}
                 />
             </div>
@@ -93,6 +127,7 @@ function Register() {
                     input1
                     placeholder={'Vui lòng nhập tên của bạn!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.username}
                     errMes={errors.username}
                 />
             </div>
@@ -105,6 +140,7 @@ function Register() {
                     input1
                     placeholder={'Vui lòng nhập mật khẩu!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.password}
                     errMes={errors.password}
                 />
             </div>
@@ -117,11 +153,12 @@ function Register() {
                     input1
                     placeholder={'Vui lòng nhập lại mật khẩu!'}
                     onChange={(e) => handleChange(e)}
+                    value={formData.confirmPassword}
                     errMes={errors.confirmPassword}
                 />
             </div>
             <ButtonCpn type="submit" button2 style={{ marginTop: '2rem', width: '18rem' }}>
-                đăng nhập
+                đăng ký
             </ButtonCpn>
 
             <div className={cx('authItem')}>
@@ -130,6 +167,20 @@ function Register() {
                     Đăng nhập
                 </Link>
             </div>
+
+            <ModalComp
+                className={cx('boxModal')}
+                isOpen={openModal}
+                setOpenModal={setOpenModal}
+                onOk={handleOk}
+                textBtnOk={'Đăng nhập'}
+            >
+                <img src={iconImg.success} alt="errSuccessImg" className={cx('imgSuc')} />
+                <h3>Đăng ký thành công</h3>
+                <p>
+                    Bạn có muốn đến màn hình <span>Đăng nhập</span>?
+                </p>
+            </ModalComp>
         </BgrMain>
     );
 }

@@ -1,0 +1,82 @@
+.boxModal {
+    padding: 3rem 1rem !important;
+    height: 850px;
+    position: relative;
+}
+
+.boxSelectCharacter {
+    .birdBody {
+        margin-top: -4rem;
+    }
+    .boxInfoItem {
+        color: var(--text-black-color);
+        text-align: left;
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .charContentBody,
+        .exampleContentBody {
+            font-size: 1.4rem;
+            line-height: 1.6rem;
+            margin-top: 1rem;
+            padding-left: 2rem;
+        }
+
+        .charContentBody {
+            display: flex;
+            justify-content: space-between;
+
+            li {
+                margin-bottom: 0.7rem;
+            }
+        }
+        .exampleContentBody {
+            li {
+                margin-bottom: 0.7rem;
+                span {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    .boxInfoItem.boxMargin {
+        margin-top: 1rem;
+    }
+}
+
+.boxBtn {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20rem;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: -1rem;
+    .btn {
+        width: 5rem;
+        height: 5rem;
+        font-size: 3rem;
+        color: var(--text-black-color);
+    }
+    .btn.delBtn {
+        opacity: 0.5;
+    }
+
+    .btnNext {
+        transform: rotate(180deg);
+    }
+}
+
+.birdBody {
+    display: none;
+}
+
+.birdBody.active {
+    display: block;
+}

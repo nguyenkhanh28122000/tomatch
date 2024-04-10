@@ -4,12 +4,21 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function Bgr({ children, className, isOverflow = false, isVerticalAlignment = false, isHomeScreen = false, onSubmit }) {
+function Bgr({
+    children,
+    className,
+    isOverflow = false,
+    isVerticalAlignment = false,
+    isHomeScreen = false,
+    isAlignCenter = false,
+    onSubmit,
+}) {
     const clases = cx('main', {
         [className]: className,
         overflow: isOverflow,
         verticalAlignment: isVerticalAlignment,
         isHomeScreen,
+        isAlignCenter,
     });
 
     let BoxMain = 'div';
