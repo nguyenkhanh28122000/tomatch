@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { updateActivePerInfo } from '../../../store/apiSlice';
 const cx = classNames.bind(styles);
 
-function BoxChartBird({ item, className }) {
+function BoxChartBird({ item, className, isCancelShow = false }) {
     const dispatch = useDispatch();
     const handleClickAvt = (id) => {
         dispatch(
@@ -70,30 +70,32 @@ function BoxChartBird({ item, className }) {
             </div>
             <div className={cx('birdBox')}>
                 <AvatarImg
-                    onClick={() => handleClickAvt(1)}
+                    onClick={isCancelShow ? () => handleClickAvt(1) : null}
                     src={bird.eagle}
                     isEagle
                     title={'đại bàng'}
-                    isBird
-                    idBird={1}
+                    isBtn={isCancelShow}
                 />
-
-                <AvatarImg onClick={() => handleClickAvt(2)} src={bird.owl} isOwl title={'chim cú'} isBird idBird={2} />
                 <AvatarImg
-                    onClick={() => handleClickAvt(3)}
+                    onClick={isCancelShow ? () => handleClickAvt(2) : null}
+                    src={bird.owl}
+                    isOwl
+                    title={'chim cú'}
+                    isBtn={isCancelShow}
+                />
+                <AvatarImg
+                    onClick={isCancelShow ? () => handleClickAvt(3) : null}
                     src={bird.peacock}
                     isPeacock
                     title={'chim công'}
-                    isBird
-                    idBird={3}
+                    isBtn={isCancelShow}
                 />
                 <AvatarImg
-                    onClick={() => handleClickAvt(4)}
+                    onClick={isCancelShow ? () => handleClickAvt(4) : null}
                     src={bird.dove}
                     isDove
                     title={'bồ câu'}
-                    isBird
-                    idBird={4}
+                    isBtn={isCancelShow}
                 />
             </div>
         </div>

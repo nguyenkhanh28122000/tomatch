@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 
 // import required modules
 function AvatarImg({
-    idBird = 1,
     title,
     to,
     src,
@@ -27,6 +26,7 @@ function AvatarImg({
     isPeacock,
     isDove,
     onClick,
+    isBtn,
 }) {
     let Comp = 'div';
 
@@ -38,7 +38,7 @@ function AvatarImg({
 
     return (
         <>
-            <div className={cx('container')} onClick={onClick}>
+            <div className={cx('container', { isBtn })} onClick={onClick}>
                 <Comp to={to} className={clases} style={styles}>
                     <img src={src} alt="avatar default error" />
                     {value && (

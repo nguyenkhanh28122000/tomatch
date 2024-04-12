@@ -39,7 +39,9 @@ function BoxInput({
                 onChange={(e) => setFormValue({ ...formValue, name: e.target.value })}
                 disabled={isDistabled}
             />
-            <h3>Email của bạn:</h3>
+            <h3>
+                Email của bạn: <span>*</span>
+            </h3>
             <input
                 name="emailUser"
                 className={cx(mesErr && 'err')}
@@ -49,6 +51,7 @@ function BoxInput({
                     serErrEmail({});
                 }}
                 disabled={isDistabled}
+                // placeholder="*"
             />
             {isCheckEmail && { mesErr } && <span className={cx('mesErr')}>{mesErr}</span>}
         </div>

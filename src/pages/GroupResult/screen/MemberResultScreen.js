@@ -3,7 +3,7 @@ import styles from '../styles/detailResultStyles.module.scss';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../../store/apiSlice';
 import { useLocation, useParams } from 'react-router-dom';
-import { BackBtn, BgrMain, Header, Line, BoxResultGroup } from '../../../conponents';
+import { BackBtn, BgrMain, Header, Line, BoxResultGroup, PersonalInfos } from '../../../conponents';
 
 const cx = classNames.bind(styles);
 function MemberResult() {
@@ -18,6 +18,7 @@ function MemberResult() {
                 <Line width={'500px'} isLine1 />
             </div>
             <BoxResultGroup item={location.state.data} idGroup={idGroup} />
+            <PersonalInfos />
         </BgrMain>
     );
 }

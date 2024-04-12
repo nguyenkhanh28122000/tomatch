@@ -131,6 +131,15 @@ export const userApi = createApi({
                 };
             },
         }),
+
+        getUesrProfileGoogle: builder.query({
+            query: (params) => {
+                return {
+                    url: 'google/user-info',
+                    params: params,
+                };
+            },
+        }),
     }),
 });
 
@@ -150,4 +159,5 @@ export const {
     useGetQuestionWithIDBankQuery,
     useUserCreateGroupMutation,
     useUseEditPasswordMutation,
+    useGetUesrProfileGoogleQuery,
 } = userApi;

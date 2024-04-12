@@ -11,6 +11,7 @@ import {
     BoxResultBeck,
     AvatarImg,
     NotDataIcon,
+    PersonalInfos,
 } from '../../../conponents';
 import { useGetGroupInfomationDetailQuery, usePrefetch } from '../../../store/api';
 import { useParams } from 'react-router-dom';
@@ -100,8 +101,10 @@ const RenderResultPer = ({ BiscResult, BeckResult, characterSelect, setCharacter
                     </div>
                 </div>
             </div>
-
-            <BoxSelectBird setCharacterSelect={setCharacterSelect} characterSelect={characterSelect} />
+            <div>
+                <BoxSelectBird setCharacterSelect={setCharacterSelect} characterSelect={characterSelect} />
+                <span className={cx('intruct')}>Lựa chọn tính cách bạn muốn</span>
+            </div>
         </div>
     );
 };
@@ -128,7 +131,7 @@ function GroupsDetailScreen() {
                     setCharacterSelect={setCharacterSelect}
                 />
                 <section className={cx('mainTable')}>
-                    {!data?.data?.groupResult ? (
+                    {!data?.data?.groupResult || data?.data?.groupResult.length === 0 ? (
                         <NotDataIcon isMaxSize isCenter title="Không có dữ liệu của thành viên" />
                     ) : (
                         <table className={cx('contentTable')}>
@@ -165,6 +168,7 @@ function GroupsDetailScreen() {
                     )}
                 </section>
             </main>
+            <PersonalInfos />
         </BgrMain>
     );
 }

@@ -55,13 +55,6 @@ const RenderHeaderTest = ({ type, idGroup, idExam, questionType = null }) => {
 };
 
 function BoxResultGroup({ item, idGroup }) {
-    const navigate = useNavigate();
-    const handleClick = () => {
-        navigate(`/group-results/${item.idGroup}/detail/${item.id}`, {
-            state: { questionType: findMax(item.DISC.Percentage, 'Percentage').QuestionType },
-        });
-    };
-
     return (
         <div className={cx('main', 'mainResultGroup')}>
             <div className={cx('info')}>

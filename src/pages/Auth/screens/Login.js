@@ -11,9 +11,9 @@ import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
 import { testEmail, testPassword } from '../../../hooks/hocks';
 import { authPath } from '../../../Router/paths';
 
-import { useUserLoginMutation } from '../../../store/api';
-import { useSelector } from 'react-redux';
-import { selectUserProfile } from '../../../store/apiSlice';
+import { useGetUesrProfileGoogleQuery, useUserLoginMutation } from '../../../store/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserProfile, updateUserInfo } from '../../../store/apiSlice';
 
 import { privatePath } from '../../../Router/paths';
 
@@ -22,7 +22,7 @@ const cx = classNames.bind(styles);
 function Login() {
     const navigate = useNavigate();
     const location = useLocation();
-
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         userName: location.state?.email ? location.state?.email : '',
         password: '',
@@ -31,7 +31,10 @@ function Login() {
     const [errors, setErrors] = useState({});
 
     const [userLogin] = useUserLoginMutation();
+    const { data } = useGetUesrProfileGoogleQuery({ method: 'google', type: 'existing' });
     const auth = useSelector(selectUserProfile);
+
+    // console.log(111, data);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -61,7 +64,6 @@ function Login() {
 
         if (Object.keys(validationErrors).length === 0) {
             userLogin(formData).then((data) => {
-                console.log(99, data);
                 if (data?.data.status !== 1) {
                     alert(data?.data.message);
                 }
@@ -69,10 +71,27 @@ function Login() {
         }
     };
 
+    // useEffect(() => {
+    //     if (data?.userInfo) {
+    //         console.log(4444, data?.userInfo[0]);
+    //         localStorage.setItem('user_profile', JSON.stringify(data?.userInfo[0]));
+    //         localStorage.setItem('id_user', data?.userInfo[0].userID);
+
+    //         dispatch(
+    //             updateUserInfo({
+    //                 idUser: data?.userInfo[0].userID,
+    //                 userProfile: data?.userInfo[0],
+    //             }),
+    //         );
+    //     }
+    // }, [data]);
+
     useEffect(() => {
+        // console.log(44, auth, localStorage.getItem('id_user'));
         // Navigate to home page if authenticated
-        if (auth?.UserID) {
-            navigate(privatePath.personalResults);
+        if (Object.values(auth).length !== 0) {
+            // console.log(888, localStorage.getItem('id_user'));
+            navigate(`${privatePath.personalResults}?type=1`);
         }
     }, [auth]);
 

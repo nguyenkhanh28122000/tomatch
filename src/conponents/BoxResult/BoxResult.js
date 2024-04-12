@@ -39,7 +39,7 @@ function BoxResult({ item, setIdActive }) {
                     Xem chi tiết
                 </Button>
             </div>
-            <BoxChartBird item={item} />
+            <BoxChartBird item={item} isCancelShow={true} />
         </div>
     );
 }

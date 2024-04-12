@@ -35,8 +35,8 @@ function QuestionComp({ id, idResponse, question, type, answer, setResultForm })
         <div className={cx('questionContainer')}>
             <p>{`Câu ${id + 1}: ${question}`}</p>
             <div className={cx('boxSelect')}>
-                <InputRadio label="Đúng" onChange={() => setResult(true)} idCheck={result} idRadio={true} />
-                <InputRadio label="Sai" onChange={() => setResult(false)} idCheck={result} idRadio={false} />
+                <InputRadio label="Phù hợp" onChange={() => setResult(true)} idCheck={result} idRadio={true} />
+                <InputRadio label="Chưa phù hợp" onChange={() => setResult(false)} idCheck={result} idRadio={false} />
             </div>
         </div>
     );

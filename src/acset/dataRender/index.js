@@ -5,22 +5,22 @@ import { privatePath, authPath } from '../../Router/paths';
 const itemNavbarPath1 = [
     {
         ID: 1,
-        title: 'kết quả bài test',
-        path: privatePath.personalResults,
+        title: 'kết quả bài đánh giá',
+        path: `${privatePath.personalResults}?type=1`,
     },
     {
-        title: 'làm bài test',
+        title: 'làm bài đánh giá',
         icon: FaCaretDown,
         children: [
             {
                 ID: '2a',
-                title: 'Bài test tính cách',
+                title: 'Trác nghiệm tính cách - DISC',
                 path: privatePath.personalityTest,
                 type: 1,
             },
             {
                 ID: '2b',
-                title: 'Bài test tâm lý',
+                title: 'Trắc nghiệm tâm lý - BECK',
                 path: privatePath.psychologicalTest,
                 type: 2,
             },

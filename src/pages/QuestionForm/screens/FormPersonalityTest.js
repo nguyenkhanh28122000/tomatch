@@ -1,21 +1,32 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '../styles/questionFormStyles.module.scss';
 
 import QuestionComp from '../components/QuestionComp';
-import { BgrMain, BackBtn, Pagination, ButtonCpn, Header, Line, BoxInput, ModalComp } from '../../../conponents';
+import {
+    BgrMain,
+    BackBtn,
+    Pagination,
+    ButtonCpn,
+    Header,
+    Line,
+    BoxInput,
+    ModalComp,
+    PersonalInfos,
+} from '../../../conponents';
 import { RenderBird } from '../../FormQuestionResult/screen/FormQuestionResultScreen';
 import {
     useUserSubmitExamResultMutation,
     useGetQuestionBankWithTypeQuery,
     useGetQuestionWithIDBankQuery,
 } from '../../../store/api';
-import { selectUserId } from '../../../store/apiSlice';
+import { selectUserId, selectUserProfile } from '../../../store/apiSlice';
 import { testEmail } from '../../../hooks/hocks';
 import { findMax } from '../../../hooks/hocks';
 import { VscError } from 'react-icons/vsc';
+import { updateActivePerInfo } from '../../../store/apiSlice';
 
 const cx = classNames.bind(styles);
 
@@ -23,16 +34,18 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
     const { idGroup } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
-    const [valueEmail, setValueEmail] = useState({
-        email: '',
-        name: '',
+    const dispatch = useDispatch();
+    const userInfo = useSelector(selectUserProfile);
+    const [valueEmail, setValueEmail] = useState(() => {
+        return {
+            email: userInfo.UserName ? userInfo.UserName : '',
+            name: userInfo.FullName ? userInfo.FullName : '',
+        };
     });
     const [errEmail, setErrEmail] = useState({});
 
     const userID = useSelector(selectUserId);
-    console.log(999, location.state);
     const bank = useGetQuestionBankWithTypeQuery(location.state?.questionBankType).data?.data[0].QuestionBankID;
-    console.log(44, bank);
     const { data } = useGetQuestionWithIDBankQuery(questionBankID ? questionBankID : bank);
 
     // console.log(valueEmail.email.length === 0 && !idGroup ? 1 : JSON.stringify(valueEmail));
@@ -170,6 +183,15 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
         }
     };
 
+    const handleClickAvt = (id) => {
+        dispatch(
+            updateActivePerInfo({
+                isOpen: true,
+                initSlidePerInfo: id,
+            }),
+        );
+    };
+
     return (
         <BgrMain isHomeScreen isAlignCenter>
             <BackBtn />
@@ -183,6 +205,8 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
                         isCheckEmail
                         mesErr={errEmail.email}
                         serErrEmail={setErrEmail}
+                        email={valueEmail.email}
+                        name={valueEmail.name}
                     />
                 )}
                 {datas?.map((question) => {
@@ -243,7 +267,10 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
                             <RenderBird questionType={mesRespone.questionType} />
 
                             <p className={cx('text3')}>
-                                <span className={cx('link')}>Xem thêm</span> thông tin về tính cách này !
+                                <span className={cx('link')} onClick={() => handleClickAvt(mesRespone.questionType)}>
+                                    Xem thêm
+                                </span>{' '}
+                                thông tin về tính cách này !
                             </p>
                         </>
                     ) : (
@@ -255,6 +282,7 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
                     )}
                 </ModalComp>
             )}
+            <PersonalInfos />
         </BgrMain>
     );
 }

@@ -16,7 +16,13 @@ const apiSlice = createSlice({
         // for logout
         logout: () => initialState,
         updateUsername: () => {},
-
+        updateUserInfo: (state, action) => {
+            console.log(44111, action.payload);
+            return {
+                ...action.payload,
+                ...state,
+            };
+        },
         updateActivePerInfo: (state, action) => {
             return {
                 ...state,
@@ -41,6 +47,10 @@ const apiSlice = createSlice({
             }
         });
 
+        builder.addMatcher(userApi.endpoints.getUesrProfileGoogle.matchFulfilled, (state, action) => {
+            console.log(333, action.payload);
+        });
+
         builder.addMatcher(userApi.endpoints.userLogout.matchFulfilled, (state, action) => {
             // Lưu token vào state
             const data = action?.payload;
@@ -54,7 +64,7 @@ const apiSlice = createSlice({
 });
 
 // Export action ra để sử dụng cho tiện.
-export const { updateUsername, logout, updateActivePerInfo } = apiSlice.actions;
+export const { updateUsername, logout, updateActivePerInfo, updateUserInfo } = apiSlice.actions;
 
 // Action là 1 hàm trả về object dạng {type, payload}, chạy thử console.log(updateUsername()) để xem chi tiết
 

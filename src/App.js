@@ -4,7 +4,7 @@ import { publicRoutes, privateRoutes } from './Router/router';
 import DefaultLayout from './conponents/Layout/Layout';
 import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserProfile } from './store/apiSlice';
+import { selectUserId, selectUserProfile } from './store/apiSlice';
 
 function App() {
     const auth = useSelector(selectUserProfile);
@@ -27,7 +27,7 @@ function App() {
                         />
                     );
                 })}
-                {auth?.UserID &&
+                {Object.values(auth).length !== 0 &&
                     privateRoutes.map(({ path, element, layout, layoutHome }, index) => {
                         const Page = element;
                         const LayoutHome = layoutHome === null ? Fragment : layoutHome;

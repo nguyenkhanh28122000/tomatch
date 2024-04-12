@@ -14,7 +14,7 @@ function Modal({
     onOk,
     children,
     isBtnCancel = true,
-    isBtnOk = false,
+    isBtnOk = true,
     textBtnOk,
 }) {
     const dispatch = useDispatch();

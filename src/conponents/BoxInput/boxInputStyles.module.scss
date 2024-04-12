@@ -9,6 +9,10 @@
         font-weight: 700;
         color: var(--text-black-color);
         margin-bottom: 1rem;
+
+        span {
+            color: var(--red-color);
+        }
     }
 
     input {

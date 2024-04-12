@@ -258,6 +258,7 @@ function CreateGroupScreen() {
                     onOk={() => handleOk(mesRespone.status)}
                     textBtnOk={mesRespone.status === 1 ? 'Xem kết quả' : 'Kiểm tra'}
                     isBtnCancel={mesRespone.status === 1}
+                    isBtnOk
                 >
                     {mesRespone.status === 1 ? (
                         <>

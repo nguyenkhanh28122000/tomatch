@@ -18,7 +18,7 @@ function GroupResults() {
 
     const [totalResult, setTotalResult] = useState();
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(6);
+    const [postsPerPage, setPostsPerPage] = useState(10);
     const prefetchGetGroupInfomation = usePrefetch('getGroupInfomation', {
         ifOlderThan: 1,
     });
@@ -50,7 +50,7 @@ function GroupResults() {
                                 <p className={cx('completePeople')}>
                                     số người làm: <span>{`${item.PersonalResultCount}/${item.EmailCount}`}</span>
                                 </p>
-                                <p className={cx('date')}>{item.CreatedDate}</p>
+                                <p className={cx('date')}>{item.CreatedDate.split(' ')[0]}</p>
                             </div>
                         </ButtonCpn>
                     );
