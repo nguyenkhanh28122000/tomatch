@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserId } from '../../../store/apiSlice';
 import { useGetPersonalResultsQuery, usePrefetch } from '../../../store/api';
 
-import { BoxResult, PersonalInfos } from '../../../conponents';
+import { BoxResult, LoaderIcon, PersonalInfos } from '../../../conponents';
 import { useEffect } from 'react';
 
 function DiscResults({ currentPage, postsPerPage, setTotalResult }) {
@@ -11,7 +11,7 @@ function DiscResults({ currentPage, postsPerPage, setTotalResult }) {
     const prefetchGetPersonalResults = usePrefetch('getPersonalResults', {
         ifOlderThan: 1,
     });
-    const { data } = useGetPersonalResultsQuery({
+    const { data, isLoading } = useGetPersonalResultsQuery({
         id: IdUser,
         pageNum: currentPage,
         pageSize: postsPerPage,
@@ -26,6 +26,10 @@ function DiscResults({ currentPage, postsPerPage, setTotalResult }) {
     useEffect(() => {
         prefetchGetPersonalResults({ id: IdUser, pageNum: currentPage, pageSize: postsPerPage, questionBankType: 1 });
     }, []);
+
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
 
     return (
         <>

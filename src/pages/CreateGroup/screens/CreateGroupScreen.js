@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from '../styles/createGroupStyles.module.scss';
 
 import { compareValues, testEmail } from '../../../hooks/hocks';
-import { BackBtn, BgrMain, ButtonCpn, InputCheckbox, ModalComp } from '../../../conponents';
+import { BackBtn, BgrMain, ButtonCpn, InputCheckbox, ModalComp, LoaderIcon } from '../../../conponents';
 import InfoItem from '../component/InfoItem';
 import BoxMail from '../component/BoxMail';
 import { useUserCreateGroupMutation } from '../../../store/api';
@@ -246,6 +246,7 @@ function CreateGroupScreen() {
                         onClick={(e) => handleSubmit(e)}
                         disabled={userCreateGroupLoad.isLoading}
                     >
+                        {userCreateGroupLoad.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
                         Tao nhom
                     </ButtonCpn>
                 )}

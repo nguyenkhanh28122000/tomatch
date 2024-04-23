@@ -6,7 +6,7 @@ import styles from '../styles/authStyles.module.scss';
 import { BgrMain } from '../../../conponents';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
+import { InputCpn, ButtonCpn, Header, Line, LoaderIcon } from '../../../conponents';
 
 import { testEmail, testPassword } from '../../../hooks/hocks';
 import { authPath } from '../../../Router/paths';
@@ -30,11 +30,11 @@ function Login() {
 
     const [errors, setErrors] = useState({});
 
-    const [userLogin] = useUserLoginMutation();
+    const [userLogin, userLoginResponse] = useUserLoginMutation();
     const { data } = useGetUesrProfileGoogleQuery({ method: 'google', type: 'existing' });
     const auth = useSelector(selectUserProfile);
 
-    // console.log(111, data);
+    console.log(111, userLoginResponse.isLoading);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -133,8 +133,14 @@ function Login() {
                     errMes={errors.password}
                 />
             </div>
-            <ButtonCpn type="submit" button2 style={{ marginTop: '2rem', width: '18rem' }}>
-                đăng nhập
+            <ButtonCpn
+                type="submit"
+                button2
+                style={{ marginTop: '2rem', width: '18rem' }}
+                disabled={userLoginResponse.isLoading}
+            >
+                {userLoginResponse.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
+                <span>đăng nhập</span>
             </ButtonCpn>
 
             <div className={cx('authItem')}>

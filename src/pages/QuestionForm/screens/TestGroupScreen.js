@@ -4,18 +4,13 @@ import { BackBtn, BgrMain } from '../../../conponents';
 
 import FormPersonalityTest from './FormPersonalityTest';
 import FormPsychologicalTest from './FormPsychologicalTest';
-import { useGetQuestionWithIDBankQuery, useGetQuestionBankWithIDQuery } from '../../../store/api';
+import { useGetQuestionBankWithIDQuery } from '../../../store/api';
 import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function TestGroupScreen() {
     const { idGroup, questionBankID } = useParams();
-
-    // const { data } = useGetQuestionWithIDBankQuery(questionBankID);
-
     const questionBankType = useGetQuestionBankWithIDQuery(questionBankID).data?.data?.QuestionBankType;
-
-    // console.log(data?.data);
 
     return (
         <>

@@ -6,7 +6,7 @@ import styles from '../styles/authStyles.module.scss';
 import { BgrMain, ModalComp } from '../../../conponents';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
-import { InputCpn, ButtonCpn, Header, Line } from '../../../conponents';
+import { InputCpn, ButtonCpn, Header, Line, LoaderIcon } from '../../../conponents';
 
 import { testEmail, testPassword } from '../../../hooks/hocks';
 import { authPath } from '../../../Router/paths';
@@ -30,7 +30,7 @@ function Register() {
     const [emailLogin, setEmailLogin] = useState('');
     const [openModal, setOpenModal] = useState(false);
 
-    const [userRegister] = useUserRegisterMutation();
+    const [userRegister, userRegisterResponse] = useUserRegisterMutation();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -72,7 +72,6 @@ function Register() {
                 password: formData.password,
                 fullName: formData.username,
             }).then((data) => {
-                // console.log(data.data.status);
                 if (data.data.status === 1) {
                     setOpenModal(true);
                     setEmailLogin(data?.data?.data.UserName);
@@ -157,8 +156,15 @@ function Register() {
                     errMes={errors.confirmPassword}
                 />
             </div>
-            <ButtonCpn type="submit" button2 style={{ marginTop: '2rem', width: '18rem' }}>
-                đăng ký
+            <ButtonCpn
+                type="submit"
+                button2
+                style={{ marginTop: '2rem', width: '18rem' }}
+                disabled={userRegisterResponse.isLoading}
+            >
+                {userRegisterResponse.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
+
+                <span>đăng ký</span>
             </ButtonCpn>
 
             <div className={cx('authItem')}>

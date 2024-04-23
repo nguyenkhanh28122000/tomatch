@@ -12,6 +12,7 @@ import {
     AvatarImg,
     NotDataIcon,
     PersonalInfos,
+    LoaderIcon,
 } from '../../../conponents';
 import { useGetGroupInfomationDetailQuery, usePrefetch } from '../../../store/api';
 import { useParams } from 'react-router-dom';
@@ -113,7 +114,11 @@ function GroupsDetailScreen() {
     const { idGroup } = useParams();
     const [characterSelect, setCharacterSelect] = useState(1);
 
-    const { data } = useGetGroupInfomationDetailQuery(idGroup);
+    const { data, isLoading } = useGetGroupInfomationDetailQuery(idGroup);
+
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
 
     return (
         <BgrMain className={cx('container')} isHomeScreen isVerticalAlignment>

@@ -15,6 +15,7 @@ import {
     BoxInput,
     ModalComp,
     BoxResultBeck,
+    LoaderIcon,
 } from '../../../conponents';
 
 import {
@@ -25,7 +26,6 @@ import {
 import { selectUserId } from '../../../store/apiSlice';
 import { testEmail } from '../../../hooks/hocks';
 import PsyQuestionComp from '../components/PsyQuestionComp';
-import { privatePath } from '../../../Router/paths';
 
 import { VscError } from 'react-icons/vsc';
 
@@ -44,8 +44,8 @@ function FormPsychologicalTest({ groupId = null, questionBankID }) {
     const userID = useSelector(selectUserId);
 
     const bank = useGetQuestionBankWithTypeQuery(location.state?.questionBankType).data?.data[0].QuestionBankID;
-    const { data } = useGetQuestionWithIDBankQuery(questionBankID ? questionBankID : bank);
-    const [userSubmitExam] = useUserSubmitExamResultMutation();
+    const { data, isLoading } = useGetQuestionWithIDBankQuery(questionBankID ? questionBankID : bank);
+    const [userSubmitExam, userSubmitExamResponse] = useUserSubmitExamResultMutation();
 
     const [resultForm, setResultForm] = useState();
 
@@ -170,6 +170,10 @@ function FormPsychologicalTest({ groupId = null, questionBankID }) {
         }
     };
 
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
+
     return (
         <BgrMain isHomeScreen isAlignCenter>
             <BackBtn />
@@ -205,12 +209,16 @@ function FormPsychologicalTest({ groupId = null, questionBankID }) {
                     className={cx('btnSubmit')}
                     button1
                     onClick={handleSubmit}
-                    disabled={resultForm?.filter((item) => item.SelectID === null).length !== 0}
+                    disabled={
+                        resultForm?.filter((item) => item.SelectID === null).length !== 0 ||
+                        userSubmitExamResponse.isLoading
+                    }
                 >
                     <p className={cx('total')}>
                         Số câu hỏi đã hoàn thành:{' '}
                         <span>{`${21 - resultForm?.filter((item) => item.SelectID === null).length}/21`}</span>
                     </p>
+                    {userSubmitExamResponse.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
                     Hoàn Thành
                     {resultForm?.filter((item) => item.SelectID === null).length !== 0 && (
                         <p className={cx('boxHover')}>Vui lòng hoàn thành tất cả lựa chọn!!!</p>

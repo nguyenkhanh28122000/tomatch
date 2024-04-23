@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '../styles/questionStyles.module.scss';
 
-import { BackBtn, BgrMain, Pagination, AvatarImg, BoxInput, Line, Header } from '../../../conponents';
+import { BackBtn, BgrMain, Pagination, AvatarImg, BoxInput, Line, Header, LoaderIcon } from '../../../conponents';
 import QuestionBiscCompResult from '../component/QuestionBiscCompResult';
 import { bird } from '../../../acset/images';
 
@@ -60,7 +60,7 @@ const RenderBird = ({ questionType }) => {
 function DetailResultScreen() {
     const { idGroup, idExam } = useParams();
     const location = useLocation();
-    const { data } = useGetExamResultDetailQuery({ idExam, idGroup });
+    const { data, isLoading } = useGetExamResultDetailQuery({ idExam, idGroup });
 
     const [coinsData, setCoinsData] = useState();
     const [currentPage, setCurrentPage] = useState(1);
@@ -76,7 +76,9 @@ function DetailResultScreen() {
         }
     }, [data]);
 
-    console.log(location.state.questionType);
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
 
     return (
         <BgrMain isHomeScreen isAlignCenter isVerticalAlignment className={cx('detailResultMain')}>

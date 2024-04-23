@@ -19,3 +19,4 @@ export { default as RenderCompatibility } from './BoxResult/component/RenderComp
 export { default as BoxSelectBird } from './BoxResult/component/BoxSelectBird';
 export { default as PersonalInfos } from './PersonalInfos/PersonalInfos';
 export { default as NotDataIcon } from './NotDataIcon/NotDataIcon';
+export { default as LoaderIcon } from './Loader/Loader';

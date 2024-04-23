@@ -1,14 +1,9 @@
 import { LoginScreen, RegisterScreen } from '../pages/Auth';
 import { HomeScreen, PersonalResultsScreen, GroupResultsScreen } from '../pages/Home';
-import {
-    TestGroupScreen,
-    TestScreen,
-    FormPersonalityTestScreen,
-    FormPsychologicalTestScreen,
-} from '../pages/QuestionForm';
+import { TestGroupScreen, FormPersonalityTestScreen, FormPsychologicalTestScreen } from '../pages/QuestionForm';
 import { CreateGroupScreen } from '../pages/CreateGroup';
 import { UserScreen } from '../pages/User';
-import { DetailResultScreen, GroupsDetailScreen, MemberResultScreen } from '../pages/GroupResult';
+import { GroupsDetailScreen, MemberResultScreen } from '../pages/GroupResult';
 import { FormQuestionResultBiscScreen, FormQuestionResultBeckScreen } from '../pages/FormQuestionResult';
 import { authPath, privatePath } from './paths';
 

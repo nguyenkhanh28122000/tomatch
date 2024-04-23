@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../styles/resultScreenStyles.module.scss';
 
-import { Pagination, ButtonCpn } from '../../../conponents';
-import { privatePath } from '../../../Router/paths';
-import { fakeResultGroups } from '../../../acset/dataRender';
+import { Pagination, LoaderIcon, ButtonCpn } from '../../../conponents';
 
 import { useSelector } from 'react-redux';
 import { useGetGroupInfomationQuery, usePrefetch } from '../../../store/api';
@@ -22,7 +20,11 @@ function GroupResults() {
     const prefetchGetGroupInfomation = usePrefetch('getGroupInfomation', {
         ifOlderThan: 1,
     });
-    const { data } = useGetGroupInfomationQuery({ id: idUser, pageNum: currentPage, pageSize: postsPerPage });
+    const { data, isLoading } = useGetGroupInfomationQuery({
+        id: idUser,
+        pageNum: currentPage,
+        pageSize: postsPerPage,
+    });
 
     useEffect(() => {
         if (data?.status === 1) {
@@ -33,6 +35,10 @@ function GroupResults() {
     useEffect(() => {
         prefetchGetGroupInfomation({ id: idUser, pageNum: currentPage, pageSize: postsPerPage });
     }, []);
+
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
 
     return (
         <>

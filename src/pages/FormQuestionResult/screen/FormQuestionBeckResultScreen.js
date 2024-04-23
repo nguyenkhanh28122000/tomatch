@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '../styles/questionStyles.module.scss';
 
-import { BackBtn, BgrMain, Pagination, BoxInput, Line, Header } from '../../../conponents';
+import { BackBtn, BgrMain, Pagination, BoxInput, Line, Header, LoaderIcon } from '../../../conponents';
 import QuestionBeckCompResult from '../component/QuestionBeckCompResult';
 
 import { useGetExamResultDetailQuery } from '../../../store/api';
@@ -13,8 +13,7 @@ const cx = classNames.bind(styles);
 
 function DetailResultScreen() {
     const { idGroup, idExam } = useParams();
-    const location = useLocation();
-    const { data } = useGetExamResultDetailQuery({ idExam, idGroup });
+    const { data, isLoading } = useGetExamResultDetailQuery({ idExam, idGroup });
 
     const [coinsData, setCoinsData] = useState();
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,13 +23,15 @@ function DetailResultScreen() {
     const firstPostIndex = lastPostIndex - postsPerPage;
     let datas = coinsData?.slice(firstPostIndex, lastPostIndex);
 
-    console.log(datas);
-
     useEffect(() => {
         if (data?.data) {
             setCoinsData(data?.data?.Result);
         }
     }, [data]);
+
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
 
     return (
         <BgrMain isHomeScreen isAlignCenter isVerticalAlignment className={cx('detailResultMain')}>

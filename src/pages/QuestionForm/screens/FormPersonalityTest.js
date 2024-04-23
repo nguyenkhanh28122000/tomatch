@@ -15,6 +15,7 @@ import {
     BoxInput,
     ModalComp,
     PersonalInfos,
+    LoaderIcon,
 } from '../../../conponents';
 import { RenderBird } from '../../FormQuestionResult/screen/FormQuestionResultScreen';
 import {
@@ -46,7 +47,7 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
 
     const userID = useSelector(selectUserId);
     const bank = useGetQuestionBankWithTypeQuery(location.state?.questionBankType).data?.data[0].QuestionBankID;
-    const { data } = useGetQuestionWithIDBankQuery(questionBankID ? questionBankID : bank);
+    const { data, isLoading } = useGetQuestionWithIDBankQuery(questionBankID ? questionBankID : bank);
 
     // console.log(valueEmail.email.length === 0 && !idGroup ? 1 : JSON.stringify(valueEmail));
     const [resultForm, setResultForm] = useState();
@@ -79,7 +80,7 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
     const [postsPerPage, setPostsPerPage] = useState(5);
 
     //api
-    const [userSubmitExam] = useUserSubmitExamResultMutation();
+    const [userSubmitExam, userSubmitExamResponse] = useUserSubmitExamResultMutation();
 
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
@@ -192,6 +193,10 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
         );
     };
 
+    if (isLoading) {
+        return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
+
     return (
         <BgrMain isHomeScreen isAlignCenter>
             <BackBtn />
@@ -228,12 +233,16 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
                     className={cx('btnSubmit')}
                     button1
                     onClick={handleSubmit}
-                    disabled={resultForm?.filter((item) => item.Answer === null).length !== 0}
+                    disabled={
+                        resultForm?.filter((item) => item.Answer === null).length !== 0 ||
+                        userSubmitExamResponse.isLoading
+                    }
                 >
                     <p className={cx('total')}>
                         Số câu hỏi đã hoàn thành:{' '}
                         <span>{`${80 - resultForm?.filter((item) => item.Answer === null).length}/80`}</span>
                     </p>
+                    {userSubmitExamResponse.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
                     Hoàn Thành
                     {resultForm?.filter((item) => item.Answer === null).length !== 0 && (
                         <p className={cx('boxHover')}>Vui lòng hoàn thành tất cả lựa chọn!!!</p>
