@@ -46,6 +46,24 @@
     }
 }
 
+.btnShow {
+}
+
+.btnChange {
+    position: relative;
+    margin-top: 5rem;
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+    border-radius: 20rem;
+    .loaderIcon {
+        position: absolute;
+
+        left: 50%;
+        transform: translateX(-50%);
+        top: -4rem;
+    }
+}
+
 .modalEditPass {
     .formGroup {
         margin-bottom: 4rem;

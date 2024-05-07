@@ -1,4 +1,9 @@
+.container.isShow {
+    display: block;
+}
+
 .container {
+    display: none;
     position: relative;
     width: 40rem;
     padding-top: 10rem;

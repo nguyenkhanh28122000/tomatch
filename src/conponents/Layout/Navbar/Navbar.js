@@ -25,7 +25,7 @@ function Navbar({ setOpenLogout }) {
     };
 
     return (
-        <div className={cx('container')}>
+        <div className={cx('container', JSON.parse(localStorage.getItem('is_login')) && 'isShow')}>
             <IoMenuOutline className={cx('iconMenu')} />
             <ul className={cx('content-1')}>
                 {itemNavbarPath1.map((item, index) => {

@@ -1,5 +1,5 @@
 import { LoginScreen, RegisterScreen } from '../pages/Auth';
-import { HomeScreen, PersonalResultsScreen, GroupResultsScreen } from '../pages/Home';
+import { HomeScreen, MainHome, PersonalResultsScreen, GroupResultsScreen } from '../pages/Home';
 import { TestGroupScreen, FormPersonalityTestScreen, FormPsychologicalTestScreen } from '../pages/QuestionForm';
 import { CreateGroupScreen } from '../pages/CreateGroup';
 import { UserScreen } from '../pages/User';
@@ -33,14 +33,19 @@ const privateRoutes = [
         layoutHome: null,
     },
     {
+        path: privatePath.home,
+        element: HomeScreen,
+        layoutHome: MainHome,
+    },
+    {
         path: privatePath.personalResults,
         element: PersonalResultsScreen,
-        layoutHome: HomeScreen,
+        layoutHome: MainHome,
     },
     {
         path: privatePath.groupResults,
         element: GroupResultsScreen,
-        layoutHome: HomeScreen,
+        layoutHome: MainHome,
     },
     {
         path: privatePath.personalityTest,

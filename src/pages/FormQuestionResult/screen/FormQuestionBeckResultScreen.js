@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from '../styles/questionStyles.module.scss';
 
 import { BackBtn, BgrMain, Pagination, BoxInput, Line, Header, LoaderIcon } from '../../../conponents';
 import QuestionBeckCompResult from '../component/QuestionBeckCompResult';
-
+import { privatePath } from '../../../Router/paths';
 import { useGetExamResultDetailQuery } from '../../../store/api';
 
 const cx = classNames.bind(styles);
 
 function DetailResultScreen() {
     const { idGroup, idExam } = useParams();
+    const navigate = useNavigate();
     const { data, isLoading } = useGetExamResultDetailQuery({ idExam, idGroup });
 
     const [coinsData, setCoinsData] = useState();
@@ -28,6 +29,12 @@ function DetailResultScreen() {
             setCoinsData(data?.data?.Result);
         }
     }, [data]);
+
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('is_login'))) {
+            navigate(privatePath.home);
+        }
+    }, []);
 
     if (isLoading) {
         return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;

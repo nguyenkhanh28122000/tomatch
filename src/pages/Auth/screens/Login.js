@@ -34,8 +34,6 @@ function Login() {
     const { data } = useGetUesrProfileGoogleQuery({ method: 'google', type: 'existing' });
     const auth = useSelector(selectUserProfile);
 
-    console.log(111, userLoginResponse.isLoading);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 

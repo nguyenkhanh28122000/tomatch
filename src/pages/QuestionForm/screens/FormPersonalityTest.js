@@ -28,7 +28,7 @@ import { testEmail } from '../../../hooks/hocks';
 import { findMax } from '../../../hooks/hocks';
 import { VscError } from 'react-icons/vsc';
 import { updateActivePerInfo } from '../../../store/apiSlice';
-
+import { privatePath } from '../../../Router/paths';
 const cx = classNames.bind(styles);
 
 function FormPersonalityTest({ groupId = null, questionBankID }) {
@@ -192,6 +192,12 @@ function FormPersonalityTest({ groupId = null, questionBankID }) {
             }),
         );
     };
+
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('is_login'))) {
+            navigate(privatePath.home);
+        }
+    }, []);
 
     if (isLoading) {
         return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;

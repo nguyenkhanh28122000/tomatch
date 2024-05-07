@@ -166,6 +166,12 @@ function CreateGroupScreen() {
         }
     };
 
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('is_login'))) {
+            navigate(privatePath.home);
+        }
+    }, []);
+
     return (
         <BgrMain className={'mainContainer'} isHomeScreen isAlignCenter>
             <BackBtn />
