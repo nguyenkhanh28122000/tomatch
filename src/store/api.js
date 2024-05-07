@@ -6,7 +6,7 @@ export const userApi = createApi({
 
     // Cấu hình chung cho tất cả request
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://amazed-namely-sparrow.ngrok-free.app/api',
+        baseUrl: 'http://localhost:8000/api',
 
         prepareHeaders: (headers, { getState }) => {
             // getState() giúp lấy ra toàn bộ state trong store
@@ -140,6 +140,16 @@ export const userApi = createApi({
                 };
             },
         }),
+
+        userEditProfile: builder.mutation({
+            query: (body) => {
+                return {
+                    url: 'users/information',
+                    body: body,
+                    method: 'PUT',
+                };
+            },
+        }),
     }),
 });
 
@@ -160,4 +170,5 @@ export const {
     useUserCreateGroupMutation,
     useUseEditPasswordMutation,
     useGetUesrProfileGoogleQuery,
+    useUserEditProfileMutation,
 } = userApi;

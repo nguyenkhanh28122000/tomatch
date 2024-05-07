@@ -6,6 +6,7 @@ const authPath = {
 
 const privatePath = {
     user: '/user',
+    home: '/',
     personalResults: '/personal-results',
     groupResults: '/group-results',
     personalityTest: '/personality-test',

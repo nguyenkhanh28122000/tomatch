@@ -27,26 +27,25 @@ function App() {
                         />
                     );
                 })}
-                {Object.values(auth).length !== 0 &&
-                    privateRoutes.map(({ path, element, layout, layoutHome }, index) => {
-                        const Page = element;
-                        const LayoutHome = layoutHome === null ? Fragment : layoutHome;
-                        const Layout = layout === null ? Fragment : DefaultLayout;
+                {privateRoutes.map(({ path, element, layout, layoutHome }, index) => {
+                    const Page = element;
+                    const LayoutHome = layoutHome === null ? Fragment : layoutHome;
+                    const Layout = layout === null ? Fragment : DefaultLayout;
 
-                        return (
-                            <Route
-                                key={`${path} + ${index}`}
-                                path={path}
-                                element={
-                                    <Layout>
-                                        <LayoutHome>
-                                            <Page />
-                                        </LayoutHome>
-                                    </Layout>
-                                }
-                            />
-                        );
-                    })}
+                    return (
+                        <Route
+                            key={`${path} + ${index}`}
+                            path={path}
+                            element={
+                                <Layout>
+                                    <LayoutHome>
+                                        <Page />
+                                    </LayoutHome>
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
             </Routes>
         </div>
     );

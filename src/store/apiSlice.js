@@ -44,11 +44,20 @@ const apiSlice = createSlice({
 
                 localStorage.setItem('user_profile', JSON.stringify(data?.data));
                 localStorage.setItem('id_user', data?.data.UserID);
+                localStorage.setItem('is_login', true);
             }
         });
 
         builder.addMatcher(userApi.endpoints.getUesrProfileGoogle.matchFulfilled, (state, action) => {
             console.log(333, action.payload);
+        });
+
+        builder.addMatcher(userApi.endpoints.userEditProfile.matchFulfilled, (state, action) => {
+            const data = action?.payload;
+            if (data?.status === 1) {
+                state.userProfile = data?.data;
+                localStorage.setItem('user_profile', JSON.stringify(data?.data));
+            }
         });
 
         builder.addMatcher(userApi.endpoints.userLogout.matchFulfilled, (state, action) => {

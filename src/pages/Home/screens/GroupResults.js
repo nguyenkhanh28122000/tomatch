@@ -8,12 +8,13 @@ import { Pagination, LoaderIcon, ButtonCpn } from '../../../conponents';
 import { useSelector } from 'react-redux';
 import { useGetGroupInfomationQuery, usePrefetch } from '../../../store/api';
 import { selectUserId } from '../../../store/apiSlice';
-
+import { useNavigate } from 'react-router-dom';
+import { privatePath } from '../../../Router/paths';
 const cx = classNames.bind(styles);
 
 function GroupResults() {
     const idUser = useSelector(selectUserId);
-
+    const navigate = useNavigate();
     const [totalResult, setTotalResult] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
@@ -38,6 +39,10 @@ function GroupResults() {
 
     if (isLoading) {
         return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
+    }
+
+    if (!JSON.parse(localStorage.getItem('is_login'))) {
+        return <div className={cx('boxNotLogin')}>Vui long đăng nhập để xem kết quả của bạn !!!</div>;
     }
 
     return (

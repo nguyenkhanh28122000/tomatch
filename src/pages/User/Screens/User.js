@@ -1,18 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from '../Styles/userStyles.module.scss';
 
-import { BgrMain, BackBtn, AvatarImg, ButtonCpn, ModalComp, InputCpn } from '../../../conponents';
+import {
+    BgrMain,
+    BackBtn,
+    AvatarImg,
+    ButtonCpn,
+    ModalComp,
+    InputCpn,
+    PersonalInfos,
+    LoaderIcon,
+} from '../../../conponents';
 import { IoIosLogOut } from 'react-icons/io';
 import InfoItem from '../Component/InfoItems';
 import avatarDefault from '../../../acset/images';
-import { authPath } from '../../../Router/paths';
+import { authPath, privatePath } from '../../../Router/paths';
 
-import { selectUserProfile, selectUserId, logout } from '../../../store/apiSlice';
-import { useUserLogoutMutation, useUseEditPasswordMutation } from '../../../store/api';
+import { selectUserProfile, selectUserId, logout, updateActivePerInfo } from '../../../store/apiSlice';
+import { useUserLogoutMutation, useUseEditPasswordMutation, useUserEditProfileMutation } from '../../../store/api';
 
 import { testPassword } from '../../../hooks/hocks';
 const cx = classNames.bind(styles);
@@ -128,6 +137,7 @@ const ModalEditPass = ({ isOpen, setOpen }) => {
 function UserScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const userID = useSelector(selectUserId);
     const useInfomation = useSelector(selectUserProfile);
 
     const [openLogout, setOpenLogout] = useState(false);
@@ -140,6 +150,8 @@ function UserScreen() {
         dateOfBirth: useInfomation.DateOfBirth,
     });
 
+    const [userEditProfile, userEditProfileRespone] = useUserEditProfileMutation();
+    console.log(userEditProfileRespone.isLoading);
     const handelLogout = () => {
         userLogout().then((data) => {
             if (data?.data?.status === 1) {
@@ -150,7 +162,38 @@ function UserScreen() {
         dispatch(logout);
     };
 
-    console.log(valueUser);
+    // console.log(valueUser);
+
+    const handleChangeProfile = () => {
+        userEditProfile({
+            userID: userID,
+            dateOfBirth: valueUser.dateOfBirth,
+            fullName: valueUser.name,
+        })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch(() => {
+                alert('Đã có lỗi xảy ra, vui lòng thử lại sau !!!');
+            });
+    };
+
+    console.log(3344, useInfomation);
+
+    const handleShowBird = () => {
+        dispatch(
+            updateActivePerInfo({
+                isOpen: true,
+                initSlidePerInfo: 1,
+            }),
+        );
+    };
+
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('is_login'))) {
+            navigate(privatePath.home);
+        }
+    }, []);
 
     return (
         <BgrMain isHomeScreen isVerticalAlignment>
@@ -166,7 +209,9 @@ function UserScreen() {
                     <IoIosLogOut className={cx('icon')} />
                 </ButtonCpn>
             </div>
-
+            <ButtonCpn button1 className={cx('btnShow')} onClick={handleShowBird}>
+                Chi tiết loại tính cách
+            </ButtonCpn>
             <InfoItem title={'Tên của bạn'} value={valueUser.name} setValue={setValueUser} keyValue="name" />
             <InfoItem title={'Email của bạn'} value={useInfomation.UserName} isEmail />
             <InfoItem
@@ -175,6 +220,19 @@ function UserScreen() {
                 setValue={setValueUser}
                 keyValue="dateOfBirth"
             />
+            <ButtonCpn
+                button1
+                className={cx('btnChange')}
+                onClick={handleChangeProfile}
+                disabled={
+                    (valueUser.name === useInfomation.FullName &&
+                        valueUser.dateOfBirth === useInfomation.DateOfBirth) ||
+                    userEditProfileRespone.isLoading
+                }
+            >
+                {userEditProfileRespone.isLoading && <LoaderIcon className={cx('loaderIcon')} />}
+                Thay đổi thông tin
+            </ButtonCpn>
             {openLogout && (
                 <ModalComp isOpen={openLogout} setOpenModal={setOpenLogout} onOk={handelLogout} textBtnOk={'Logout'}>
                     <p className={cx('titleLogoutModal')}>
@@ -183,6 +241,7 @@ function UserScreen() {
                 </ModalComp>
             )}
             {openEditPass && <ModalEditPass isOpen={openEditPass} setOpen={setOpenEditPass} />}
+            <PersonalInfos />
         </BgrMain>
     );
 }

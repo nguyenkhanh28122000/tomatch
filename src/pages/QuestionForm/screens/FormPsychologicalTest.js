@@ -25,6 +25,7 @@ import {
 } from '../../../store/api';
 import { selectUserId } from '../../../store/apiSlice';
 import { testEmail } from '../../../hooks/hocks';
+import { privatePath } from '../../../Router/paths';
 import PsyQuestionComp from '../components/PsyQuestionComp';
 
 import { VscError } from 'react-icons/vsc';
@@ -169,6 +170,12 @@ function FormPsychologicalTest({ groupId = null, questionBankID }) {
             setOpenModal(false);
         }
     };
+
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('is_login'))) {
+            navigate(privatePath.home);
+        }
+    }, []);
 
     if (isLoading) {
         return <LoaderIcon title={'Đang tải dữ liệu'} center sizeBig />;
