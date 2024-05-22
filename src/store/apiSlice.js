@@ -17,7 +17,6 @@ const apiSlice = createSlice({
         logout: () => initialState,
         updateUsername: () => {},
         updateUserInfo: (state, action) => {
-            console.log(44111, action.payload);
             return {
                 ...action.payload,
                 ...state,

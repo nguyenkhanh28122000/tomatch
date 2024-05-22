@@ -99,4 +99,8 @@
     .container {
         display: none;
     }
+
+    .container.isShow {
+        display: none;
+    }
 }
