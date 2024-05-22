@@ -73,10 +73,15 @@ function CreateGroupScreen() {
                 }, ''),
                 groupName: nameGroup,
                 type: testType,
-            }).then((data) => {
-                setOpenModal(true);
-                setMesRespone(data?.data);
-            });
+            })
+                .then((data) => {
+                    setOpenModal(true);
+                    setMesRespone(data?.data);
+                })
+                .catch(() => {
+                    console.log(3333);
+                    alert('Có lỗi xảy ra, vui lòng thử lại sau');
+                });
         }
     };
 

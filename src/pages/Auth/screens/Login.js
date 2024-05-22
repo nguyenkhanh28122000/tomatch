@@ -97,7 +97,7 @@ function Login() {
         <BgrMain isVerticalAlignment onSubmit={handleSubmit}>
             <Header title={'đăng nhập'} />
             <Line width={'25rem'} styles={{ marginBottom: '4rem' }} />
-            <ButtonCpn button1 to={'http://127.0.0.1:8000/auth/google/login'}>
+            <ButtonCpn button1 to={'http://127.0.0.1:8000/auth/google/login?token=c3BlY2kxMjM='}>
                 <FcGoogle className={cx('icon')} />
                 đăng nhập với google
             </ButtonCpn>
